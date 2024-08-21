@@ -15,6 +15,7 @@ import {
 } from "./_components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
+import ContactForm from "./_components/contact-form";
 
 const projects: ProjectItemProps[] = [
   {
@@ -162,7 +163,10 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section id="about" className="flex flex-col gap-4 py-6 px-5 bg-inherit w-full items-center mb-6">
+        <section
+          id="about"
+          className="flex flex-col gap-4 py-6 px-5 bg-inherit w-full items-center mb-6"
+        >
           <motion.p
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -170,7 +174,8 @@ export default function Home() {
             exit={{ x: -50, opacity: 0 }}
             className="text-xl font-mono max-sm:text-center"
           >
-            &quot;Programadores e artistas são os únicos profissionais que tem como hobby a própria profissão.&quot;
+            &quot;Programadores e artistas são os únicos profissionais que tem
+            como hobby a própria profissão.&quot;
           </motion.p>
           <motion.p
             initial={{ x: -50, opacity: 0 }}
@@ -330,10 +335,13 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section id="contact" className="py-10 px-5 bg-background w-full flex justify-center">
-          <div className="w-full max-w-[1300px] grid grid-cols-2 justify-between px-5 max-sm:grid-cols-1 max-sm:gap-4">
+        <section
+          id="contact"
+          className="py-10 px-5 bg-background w-full flex justify-center"
+        >
+          <div className="w-full max-w-[1300px] grid grid-cols-2  justify-between px-5 max-sm:grid-cols-1 max-sm:gap-4">
             <h2 className="text-4xl font-semibold max-sm:text-center max-sm:mb-5">
-              Contato{" "}
+              Contato
             </h2>
             <div className="flex flex-col gap-4 border-l">
               <div className="pl-4">
@@ -356,7 +364,7 @@ export default function Home() {
                   {" "}
                   Fique à vontade para entrar em contato comigo para discutir
                   projetos, oportunidades de trabalho ou apenas para dizer olá.
-                  Estou sempre aberto a novas conexões e colaborações.{" "}
+                  Estou aberto a novas conexões e colaborações.{" "}
                 </motion.p>{" "}
               </div>{" "}
               <div className="pl-4">
@@ -381,7 +389,7 @@ export default function Home() {
                   >
                     {" "}
                     • <strong className="underline">Email:</strong>{" "}
-                    exemplo@email.com{" "}
+                    marcos_rique@outlook.com{" "}
                   </motion.p>{" "}
                   <motion.p
                     initial={{ x: -50, opacity: 0 }}
@@ -391,8 +399,8 @@ export default function Home() {
                     className="text-base font-normal opacity-70"
                   >
                     {" "}
-                    • <strong className="underline">Telefone:</strong> (XX)
-                    XXXXX-XXXX{" "}
+                    • <strong className="underline">Telefone:</strong> 🇧🇷 (83) 9
+                    99943-5731{" "}
                   </motion.p>{" "}
                   <motion.p
                     initial={{ x: -50, opacity: 0 }}
@@ -409,12 +417,15 @@ export default function Home() {
                       className="text-primary"
                     >
                       Marcos Henrique Araújo
-                    </Link>{" "}
-                  </motion.p>{" "}
-                </div>{" "}
-              </div>{" "}
-            </div>{" "}
-          </div>{" "}
+                    </Link>
+                  </motion.p>
+                </div>
+              </div>
+            </div>
+          <div className="mt-16 w-full flex justify-center col-span-2">
+            <ContactForm />
+          </div>
+          </div>
         </section>
       </div>
     </main>
