@@ -80,7 +80,7 @@ export default function Home() {
       </div>
 
       <div className="z-10 w-full">
-        <section className="h-[100vh] pt-[180px]">
+        <section id="home" className="h-[100vh] pt-[180px]">
           <motion.div
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -162,7 +162,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section className="flex flex-col gap-4 py-6 px-5 bg-inherit w-full items-center mb-6">
+        <section id="about" className="flex flex-col gap-4 py-6 px-5 bg-inherit w-full items-center mb-6">
           <motion.p
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -290,14 +290,14 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full my-6 text-center">
+        <section id="technologies" className="w-full my-6 text-center">
           <h2 className="text-3xl font-semibold mt-6">Minha Stack</h2>
           <div className="w-full max-w-5xl mx-auto px-4 md:px-6 py-24">
             <ScrollCarrossel />
           </div>
         </section>
 
-        <section className="my-6">
+        <section id="projects" className="my-6">
           <div className="w-full h-full flex justify-center items-center flex-col">
             {/* <h2 className="text-3xl font-semibold ">Projetos</h2> */}
             <div className="flex mt-6 max-md:hidden mx-auto w-[80%] max-md:w-[80%] mb-14">
@@ -330,7 +330,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="py-10 px-5 bg-background w-full flex justify-center">
+        <section id="contact" className="py-10 px-5 bg-background w-full flex justify-center">
           <div className="w-full max-w-[1300px] grid grid-cols-2 justify-between px-5 max-sm:grid-cols-1 max-sm:gap-4">
             <h2 className="text-4xl font-semibold max-sm:text-center max-sm:mb-5">
               Contato{" "}
