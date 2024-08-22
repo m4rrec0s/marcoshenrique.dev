@@ -16,6 +16,8 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
 import ContactForm from "./_components/contact-form";
+import { Card } from "./_components/ui/card";
+import { Separator } from "./_components/ui/separator";
 
 const projects: ProjectItemProps[] = [
   {
@@ -122,15 +124,18 @@ export default function Home() {
                 </p>
 
                 <div className="w-full flex justify-center mt-6 items-center z-10 gap-5 max-sm:gap-3">
-                  <button
-                    type="submit"
+                  <Link
+                    target="_blank"
+                    href={
+                      "https://drive.google.com/file/d/17gyYLCQsvaZUceGxuFR-IkMgQ8ajlz6j/view?usp=drive_link"
+                    }
                     className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
                   >
                     <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
                     <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl hover:bg-slate-950">
                       Baixar CV
                     </span>
-                  </button>
+                  </Link>
 
                   <Link
                     href="https://github.com/m4rrec0s"
@@ -188,109 +193,79 @@ export default function Home() {
           </motion.p>
         </section>
 
-        <section className="py-10 px-5 bg-background w-full flex justify-center">
-          <div className="w-full max-w-[1300px] grid grid-cols-2 justify-between px-5 max-sm:grid-cols-1 max-sm:gap-4">
-            <h2 className="text-4xl font-semibold max-sm:text-center max-sm:mb-5">
-              About me
-            </h2>
-            <div className="flex flex-col gap-4 border-l">
-              <div className="pl-4">
-                <motion.h3
-                  initial={{ x: -50, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  exit={{ x: -50, opacity: 0 }}
-                  className="text-xl font-semibold"
+        <section className="py-16 px-6 bg-background w-full flex justify-center">
+          <div className="w-full max-w-[1300px] space-y-8 max-sm:space-y-6">
+            {/* Título Principal */}
+            <motion.h2
+              className="text-5xl font-bold text-center max-sm:text-3xl"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              About Me
+            </motion.h2>
+
+            {/* Cards Container */}
+            <div className="grid grid-cols-2 gap-6 max-sm:grid-cols-1">
+              {/* Card 1: Quem sou eu */}
+              <Card className="p-6 bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                <motion.div
+                  initial={{ y: 30, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6 }}
                 >
-                  Who am I? 🤓
-                </motion.h3>
-                <motion.p
-                  initial={{ x: -50, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 0.7 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  exit={{ x: -50, opacity: 0 }}
-                  className="text-base font-normal opacity-70"
-                >
-                  Nice to meet you! Im a web developer passionate about creating{" "}
-                  <strong className="underline">
-                    amazing online experiences
-                  </strong>
-                  . My journey involves exploring a variety of technologies,
-                  from TypeScript to Java, including Next.js, React, Prisma, and
-                  Tailwind. With a keen eye for design and usability, I strive
-                  to deliver high-quality and impactful projects. Feel free to
-                  explore my portfolio and learn more about my journey.
-                </motion.p>
-              </div>
-              <div className="pl-4">
-                <motion.h3
-                  initial={{ x: -50, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  exit={{ x: -50, opacity: 0 }}
-                  className="text-xl font-semibold"
-                >
-                  My goals ✅
-                </motion.h3>
-                <div className="flex flex-col gap-3">
-                  <motion.p
-                    initial={{ x: -50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 0.7 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    exit={{ x: -50, opacity: 0 }}
-                    className="text-base font-normal opacity-70"
-                  >
-                    • <strong className="underline"> Professional Goal:</strong>{" "}
-                    To work as a web developer within a dynamic team,
-                    contributing to innovative and impactful projects. My focus
-                    is on creating exceptional user experiences, and I`m
-                    committed to staying up-to-date with the latest
-                    technological trends.
-                  </motion.p>
-                  <motion.p
-                    initial={{ x: -50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 0.7 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    exit={{ x: -50, opacity: 0 }}
-                    className="text-base font-normal opacity-70"
-                  >
-                    • <strong className="underline"> Specialization:</strong> I
-                    aim to specialize in front-end development, exploring
-                    frameworks like React and Next.js. Additionally, I have a
-                    keen interest in deepening my knowledge of interface design
-                    and accessibility.
-                  </motion.p>
-                  <motion.p
-                    initial={{ x: -50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 0.7 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    exit={{ x: -50, opacity: 0 }}
-                    className="text-base font-normal opacity-70"
-                  >
-                    •{" "}
+                  <h3 className="text-2xl font-semibold mb-4">Who am I? 🤓</h3>
+                  <p className="text-lg font-light leading-relaxed opacity-80">
+                    Nice to meet you! I’m a web developer passionate about
+                    creating
                     <strong className="underline">
-                      Collaboration and Continuous Learning:
-                    </strong>{" "}
-                    I seek to be part of a collaborative environment where I can
-                    learn from experienced colleagues and share my own
-                    discoveries. Web development, to me, is an ongoing journey
-                    of growth.
-                  </motion.p>
-                  <motion.p
-                    initial={{ x: -50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 0.7 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    exit={{ x: -50, opacity: 0 }}
-                    className="text-base font-normal opacity-70"
-                  >
-                    •{" "}
-                    <strong className="underline"> Impact and Quality:</strong>{" "}
-                    My goal is to deliver clean, optimized, and high-quality
-                    code. I want to create products that truly make a difference
-                    in people`s lives.
-                  </motion.p>
-                </div>
-              </div>
+                      {" "}
+                      amazing online experiences
+                    </strong>
+                    . My journey involves exploring various technologies like
+                    TypeScript, Next.js, React, and more. I strive to deliver
+                    high-quality, impactful projects with a keen eye for design
+                    and usability.
+                  </p>
+                </motion.div>
+              </Card>
+
+              {/* Card 2: Objetivos */}
+              <Card className="p-6 bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                <motion.div
+                  initial={{ y: 30, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <h3 className="text-2xl font-semibold mb-4">My Goals ✅</h3>
+                  <div className="space-y-3">
+                    <p className="text-lg font-light leading-relaxed opacity-80">
+                      •{" "}
+                      <strong className="underline">Professional Goal:</strong>{" "}
+                      To work as a web developer within a dynamic team,
+                      contributing to innovative and impactful projects.
+                    </p>
+                    <p className="text-lg font-light leading-relaxed opacity-80">
+                      • <strong className="underline">Specialization:</strong> I
+                      aim to specialize in front-end development, exploring
+                      frameworks like React and Next.js.
+                    </p>
+                    <p className="text-lg font-light leading-relaxed opacity-80">
+                      •{" "}
+                      <strong className="underline">
+                        Collaboration and Continuous Learning:
+                      </strong>{" "}
+                      I seek to be part of a collaborative environment.
+                    </p>
+                    <p className="text-lg font-light leading-relaxed opacity-80">
+                      •{" "}
+                      <strong className="underline">Impact and Quality:</strong>{" "}
+                      My goal is to deliver clean, optimized, and high-quality
+                      code.
+                    </p>
+                  </div>
+                </motion.div>
+              </Card>
             </div>
           </div>
         </section>
