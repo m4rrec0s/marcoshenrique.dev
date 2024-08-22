@@ -121,7 +121,7 @@ export default function Home() {
                   como Next.js e Node.js.
                 </p>
 
-                <div className="w-full flex justify-center mt-6 items-center gap-5 max-sm:gap-3">
+                <div className="w-full flex justify-center mt-6 items-center z-10 gap-5 max-sm:gap-3">
                   <button
                     type="submit"
                     className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
@@ -337,94 +337,69 @@ export default function Home() {
         </section>
         <section
           id="contact"
-          className="py-10 px-5 bg-background w-full flex justify-center"
+          className="py-10 px-5 w-full flex justify-center bg-gradient-to-b from-background to-muted-foreground"
         >
-          <div className="w-full max-w-[1300px] grid grid-cols-2  justify-between px-5 max-sm:grid-cols-1 max-sm:gap-4">
-            <h2 className="text-4xl font-semibold max-sm:text-center max-sm:mb-5">
-              Contato
-            </h2>
-            <div className="flex flex-col gap-4 border-l">
-              <div className="pl-4">
-                <motion.h3
-                  initial={{ x: -50, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  exit={{ x: -50, opacity: 0 }}
-                  className="text-xl font-semibold"
-                >
-                  Entre em contato comigo! 📧
-                </motion.h3>{" "}
-                <motion.p
-                  initial={{ x: -50, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 0.7 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  exit={{ x: -50, opacity: 0 }}
-                  className="text-base font-normal opacity-70"
-                >
-                  {" "}
-                  Fique à vontade para entrar em contato comigo para discutir
-                  projetos, oportunidades de trabalho ou apenas para dizer olá.
-                  Estou aberto a novas conexões e colaborações.{" "}
-                </motion.p>{" "}
-              </div>{" "}
-              <div className="pl-4">
-                {" "}
-                <motion.h3
-                  initial={{ x: -50, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  exit={{ x: -50, opacity: 0 }}
-                  className="text-xl font-semibold"
-                >
-                  Informações de contato 📞
-                </motion.h3>{" "}
-                <div className="flex flex-col gap-3">
-                  {" "}
-                  <motion.p
-                    initial={{ x: -50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 0.7 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    exit={{ x: -50, opacity: 0 }}
-                    className="text-base font-normal opacity-70"
-                  >
-                    {" "}
-                    • <strong className="underline">Email:</strong>{" "}
-                    marcos_rique@outlook.com{" "}
-                  </motion.p>{" "}
-                  <motion.p
-                    initial={{ x: -50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 0.7 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    exit={{ x: -50, opacity: 0 }}
-                    className="text-base font-normal opacity-70"
-                  >
-                    {" "}
-                    • <strong className="underline">Telefone:</strong> 🇧🇷 (83) 9
-                    99943-5731{" "}
-                  </motion.p>{" "}
-                  <motion.p
-                    initial={{ x: -50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 0.7 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    exit={{ x: -50, opacity: 0 }}
-                    className="text-base font-normal opacity-70"
-                  >
-                    {" "}
-                    • <strong className="underline">LinkedIn:</strong>{" "}
-                    <Link
-                      href="https://www.linkedin.com/in/marcos-henrique-ara%C3%BAjo-7a641a242/"
-                      target="_blank"
-                      className="text-primary"
+          <div className="w-full max-w-[1300px] flex justify-center">
+            <div className="w-full px-5 flex-1 flex-col items-center">
+              <div className="w-full flex gap-6 items-center lg:justify-center">
+                <div className="flex-1 max-w-[500px]">
+                  <div className="mb-6 flex flex-col">
+                    <motion.span
+                      initial={{ x: -50, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      exit={{ x: -50, opacity: 0 }}
+                      className="text-2xl font-normal"
                     >
-                      Marcos Henrique Araújo
-                    </Link>
-                  </motion.p>
+                      Entre em
+                    </motion.span>
+                    <motion.h2
+                      initial={{ x: -50, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                      exit={{ x: -50, opacity: 0 }}
+                      className="text-4xl font-bold"
+                    >
+                      Contato
+                    </motion.h2>
+                  </div>
+                  <ContactForm />
                 </div>
+                <motion.div
+                  initial={{ y: 50, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  exit={{ y: 50, opacity: 0 }}
+                  className="flex flex-col gap-2 w-fit pt-16"
+                >
+                  <Link
+                    href="https://github.com/m4rrec0s"
+                    target="_blank"
+                    className="hover:text-primary hover:border-primary border border-white rounded-full p-2"
+                  >
+                    <Github size={18} />
+                  </Link>
+                  <Link
+                    className="hover:text-primary hover:border-primary border border-white rounded-full p-2"
+                    href="https://www.instagram.com/marcos_henrique_eu/"
+                  >
+                    <Instagram size={18} />
+                  </Link>
+                  <Link
+                    className="hover:text-primary hover:border-primary border border-white rounded-full p-2"
+                    href="https://www.linkedin.com/in/marcos-henrique-ara%C3%BAjo-7a641a242/"
+                  >
+                    <Linkedin size={18} />
+                  </Link>
+                  <Link
+                    className="hover:text-primary border hover:border-primary border-white rounded-full p-2"
+                    href="https://twitter.com/Marrecos_"
+                  >
+                    <TwitterIcon size={18} />
+                  </Link>
+                </motion.div>
               </div>
             </div>
-          <div className="mt-16 w-full flex justify-center col-span-2">
-            <ContactForm />
-          </div>
           </div>
         </section>
       </div>

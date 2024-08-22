@@ -136,7 +136,7 @@ const Header = () => {
                 <SheetTitle className="text-left font-bold">Menu</SheetTitle>
               </SheetHeader>
               <motion.ul id="underline" className="mt-12 flex flex-col gap-6">
-                <motion.li className="hover:bg-muted-foreground">
+                <motion.li className="hover:bg-muted-foreground rounded-lg">
                   <Link
                     href="#home"
                     onClick={(e) => {
@@ -144,13 +144,13 @@ const Header = () => {
                       e.preventDefault();
                       scrollToSection("home");
                     }}
-                    className="w-full rounded-lg px-3 py-3 text-sm flex gap-2"
+                    className="w-full px-3 py-3 text-sm flex gap-2"
                   >
                     <HomeIcon size={20} />
                     Início
                   </Link>
                 </motion.li>
-                <motion.li className="hover:bg-muted-foreground">
+                <motion.li className="hover:bg-muted-foreground rounded-lg">
                   <Link
                     href="#about"
                     onClick={(e) => {
@@ -158,13 +158,13 @@ const Header = () => {
                       e.preventDefault();
                       scrollToSection("about");
                     }}
-                    className="w-full rounded-lg px-3 py-3 text-sm flex gap-2"
+                    className="w-full px-3 py-3 text-sm flex gap-2"
                   >
                     <User2Icon size={20} />
                     Sobre mim
                   </Link>
                 </motion.li>
-                <motion.li className="hover:bg-muted-foreground">
+                <motion.li className="hover:bg-muted-foreground rounded-lg">
                   <Link
                     href="#technologies"
                     onClick={(e) => {
@@ -172,13 +172,13 @@ const Header = () => {
                       e.preventDefault();
                       scrollToSection("technologies");
                     }}
-                    className="w-full rounded-lg px-3 py-3 text-sm flex gap-2"
+                    className="w-full px-3 py-3 text-sm flex gap-2"
                   >
                     <BrainIcon size={20} />
                     Tecnologias
                   </Link>
                 </motion.li>
-                <motion.li className="hover:bg-muted-foreground">
+                <motion.li className="hover:bg-muted-foreground rounded-lg">
                   <Link
                     href="#projects"
                     onClick={(e) => {
@@ -186,13 +186,13 @@ const Header = () => {
                       e.preventDefault();
                       scrollToSection("projects");
                     }}
-                    className="w-full rounded-lg px-3 py-3 text-sm flex gap-2"
+                    className="w-full px-3 py-3 text-sm flex gap-2"
                   >
                     <PresentationIcon size={20} />
                     Projetos
                   </Link>
                 </motion.li>
-                <motion.li className="hover:bg-muted-foreground">
+                <motion.li className="hover:bg-muted-foreground rounded-lg">
                   <Link
                     href="#contact"
                     onClick={(e) => {
@@ -200,7 +200,7 @@ const Header = () => {
                       e.preventDefault();
                       scrollToSection("contact");
                     }}
-                    className="w-full rounded-lg px-3 py-3 text-sm flex gap-2"
+                    className="w-full px-3 py-3 text-sm flex gap-2"
                   >
                     <PhoneIcon size={20} />
                     Contato
