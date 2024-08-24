@@ -4,7 +4,7 @@ import Image from "next/image";
 import Header from "./_components/header";
 import ScrollCarrossel from "./_components/scroll-carrousel";
 import Link from "next/link";
-import { Github, Instagram, Linkedin, TwitterIcon } from "lucide-react";
+import { Github, Instagram, Linkedin } from "lucide-react";
 import ProjectItem, { ProjectItemProps } from "./_components/project-item";
 import {
   Carousel,
@@ -23,9 +23,9 @@ const projects: ProjectItemProps[] = [
   {
     props: {
       name: "MH food",
-      category: "Aplicação de Delivery de alimentos",
+      category: "Food Delivery Application",
       description:
-        "O projeto é uma aplicação web de um serviço de entrega de alimentos, desenvolvida utilizando o framework Next.js",
+        "The project is a web application for a food delivery service, developed using the Next.js framework.",
       images: [
         "https://utfs.io/f/93d839e0-1605-4683-b726-f8ac3c2c2c4f-z8uvbx.png",
         "https://utfs.io/f/961f4e66-a786-46db-a04f-9b02985dfb98-zb7k90.png",
@@ -50,9 +50,9 @@ const projects: ProjectItemProps[] = [
   {
     props: {
       name: "TaskList",
-      category: "Aplicativo web de treinamento",
+      category: "Training web application",
       description:
-        "O projeto é uma aplicação web desenvolvida com Next.js, que é um gerenciador de exercícios e treinos. Ele inclui funcionalidades para autenticação de usuários, pesquisa de exercícios, visualização de detalhes de exercícios e treinos, e integração com o banco de dados Prisma.",
+        "The project is a web application developed with Next.js, which is an exercise and workout manager. It includes features for user authentication, exercise search, viewing exercise and workout details, and integration with the Prisma database.",
       images: [
         "https://utfs.io/f/25330adf-d6f9-42b6-bac8-eaae4d1215f7-1ri2lq.png",
         "https://utfs.io/f/d44082a6-67d0-45c0-8952-77cd6922a5cd-1ri2lr.png",
@@ -118,9 +118,8 @@ export default function Home() {
                   Developer
                 </p>
                 <p className="opacity-60 text-sm max-w-[800px] mt-3">
-                  Desenvolvedor Fullstack com experiência em desenvolvimento de
-                  aplicações web modernas e eficientes utilizando tecnologias
-                  como Next.js e Node.js.
+                  Developer of modern and efficient web applications using
+                  technologies such as Next.js and Node.js.
                 </p>
 
                 <div className="w-full flex justify-center mt-6 items-center z-10 gap-5 max-sm:gap-3">
@@ -133,7 +132,7 @@ export default function Home() {
                   >
                     <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
                     <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl hover:bg-slate-950">
-                      Baixar CV
+                      Download CV
                     </span>
                   </Link>
 
@@ -156,12 +155,6 @@ export default function Home() {
                   >
                     <Linkedin size={18} />
                   </Link>
-                  <Link
-                    className="hover:text-primary border hover:border-primary border-white rounded-full p-2"
-                    href="https://twitter.com/Marrecos_"
-                  >
-                    <TwitterIcon size={18} />
-                  </Link>
                 </div>
               </div>
             </div>
@@ -177,10 +170,10 @@ export default function Home() {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             exit={{ x: -50, opacity: 0 }}
-            className="text-xl font-mono max-sm:text-center"
+            className="text-xl font-mono text-center"
           >
-            &quot;Programadores e artistas são os únicos profissionais que tem
-            como hobby a própria profissão.&quot;
+            &quot;Programmers and artists are the only professionals who have
+            their profession as a hobby.&quot;
           </motion.p>
           <motion.p
             initial={{ x: -50, opacity: 0 }}
@@ -271,7 +264,7 @@ export default function Home() {
         </section>
 
         <section id="technologies" className="w-full my-6 text-center">
-          <h2 className="text-3xl font-semibold mt-6">Minha Stack</h2>
+          <h2 className="text-3xl font-semibold mt-6">My Stack</h2>
           <div className="w-full max-w-5xl mx-auto px-4 md:px-6 py-24">
             <ScrollCarrossel />
           </div>
@@ -318,24 +311,24 @@ export default function Home() {
             <div className="w-full px-5 flex-1 flex-col items-center">
               <div className="w-full flex gap-6 items-center lg:justify-center">
                 <div className="flex-1 max-w-[500px]">
-                  <div className="mb-6 flex flex-col">
-                    <motion.span
-                      initial={{ x: -50, opacity: 0 }}
-                      whileInView={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.5, delay: 0.1 }}
-                      exit={{ x: -50, opacity: 0 }}
-                      className="text-2xl font-normal"
-                    >
-                      Entre em
-                    </motion.span>
+                  <div className="mb-6">
                     <motion.h2
                       initial={{ x: -50, opacity: 0 }}
                       whileInView={{ x: 0, opacity: 1 }}
                       transition={{ duration: 0.5, delay: 0.2 }}
                       exit={{ x: -50, opacity: 0 }}
-                      className="text-4xl font-bold"
+                      className="text-4xl flex flex-col font-bold"
                     >
-                      Contato
+                      <motion.span
+                        initial={{ x: -50, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        exit={{ x: -50, opacity: 0 }}
+                        className="text-2xl font-normal"
+                      >
+                        Get in
+                      </motion.span>
+                      Contact
                     </motion.h2>
                   </div>
                   <ContactForm />
@@ -366,18 +359,18 @@ export default function Home() {
                   >
                     <Linkedin size={18} />
                   </Link>
-                  <Link
-                    className="hover:text-primary border hover:border-primary border-white rounded-full p-2"
-                    href="https://twitter.com/Marrecos_"
-                  >
-                    <TwitterIcon size={18} />
-                  </Link>
                 </motion.div>
               </div>
             </div>
           </div>
         </section>
       </div>
+      <Separator className="opacity-50" />
+      <footer className="w-full bg-muted-foreground flex justify-center items-center py-6">
+        <p className="text-xs font-semibold text-center">
+          © 2024 Marcos Henrique Araújo. All rights reserved.
+        </p>
+      </footer>
     </main>
   );
 }

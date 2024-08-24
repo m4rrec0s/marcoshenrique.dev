@@ -51,7 +51,7 @@ const Header = () => {
                 }}
                 className="hover:text-primary transition-colors"
               >
-                Início
+                Home
               </Link>
             </motion.li>
             <motion.li className="text-sm">
@@ -63,7 +63,7 @@ const Header = () => {
                 }}
                 className="hover:text-primary transition-colors"
               >
-                Sobre mim
+                About me
               </Link>
             </motion.li>
             <motion.li className="text-sm">
@@ -75,7 +75,7 @@ const Header = () => {
                 }}
                 className="hover:text-primary transition-colors"
               >
-                Tecnologias
+                Technologies
               </Link>
             </motion.li>
             <motion.li className="text-sm">
@@ -87,7 +87,7 @@ const Header = () => {
                 }}
                 className="hover:text-primary transition-colors"
               >
-                Projetos
+                Projects
               </Link>
             </motion.li>
             <motion.li>
@@ -101,7 +101,7 @@ const Header = () => {
               >
                 <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
                 <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl hover:bg-slate-950">
-                  Contato
+                  Contact
                 </span>
               </Link>
             </motion.li>
@@ -118,7 +118,7 @@ const Header = () => {
           >
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
             <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl hover:bg-slate-950">
-              Contato
+              Contact
             </span>
           </Link>
 
@@ -147,7 +147,7 @@ const Header = () => {
                     className="w-full px-3 py-3 text-sm flex gap-2"
                   >
                     <HomeIcon size={20} />
-                    Início
+                    Home
                   </Link>
                 </motion.li>
                 <motion.li className="hover:bg-muted-foreground rounded-lg">
@@ -161,7 +161,7 @@ const Header = () => {
                     className="w-full px-3 py-3 text-sm flex gap-2"
                   >
                     <User2Icon size={20} />
-                    Sobre mim
+                    About me
                   </Link>
                 </motion.li>
                 <motion.li className="hover:bg-muted-foreground rounded-lg">
@@ -175,7 +175,7 @@ const Header = () => {
                     className="w-full px-3 py-3 text-sm flex gap-2"
                   >
                     <BrainIcon size={20} />
-                    Tecnologias
+                    Technologies
                   </Link>
                 </motion.li>
                 <motion.li className="hover:bg-muted-foreground rounded-lg">
@@ -189,7 +189,7 @@ const Header = () => {
                     className="w-full px-3 py-3 text-sm flex gap-2"
                   >
                     <PresentationIcon size={20} />
-                    Projetos
+                    Projects
                   </Link>
                 </motion.li>
                 <motion.li className="hover:bg-muted-foreground rounded-lg">
@@ -203,7 +203,7 @@ const Header = () => {
                     className="w-full px-3 py-3 text-sm flex gap-2"
                   >
                     <PhoneIcon size={20} />
-                    Contato
+                    Contact
                   </Link>
                 </motion.li>
               </motion.ul>
