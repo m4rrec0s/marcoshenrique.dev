@@ -33,7 +33,7 @@ const projects: ProjectItemProps[] = [
         "https://utfs.io/f/87c866da-d460-4cba-ae42-c50fc9307179-yd4bgm.png",
       ],
       status: "Completed",
-      tecnologies: [
+      technologies: [
         "Next.js",
         "React",
         "Tailwind",
@@ -60,7 +60,7 @@ const projects: ProjectItemProps[] = [
         "https://utfs.io/f/8ff323e1-58f4-4fe3-808a-1d61e637b82f-1ri2lt.png",
       ],
       status: "In Progress",
-      tecnologies: [
+      technologies: [
         "Next.js",
         "React",
         "Tailwind",
@@ -71,6 +71,30 @@ const projects: ProjectItemProps[] = [
       ],
       github: "",
       project: "https://tasklist-app-eight.vercel.app/",
+    },
+  },
+  {
+    props: {
+      name: "TrackEquip",
+      category: "Equipment Tracking Application",
+      description:
+        "The project is a web application for tracking equipment. It includes equipment search, viewing equipment details and status of the equipment.",
+      images: [
+        "https://utfs.io/f/BhegMacQdV7xNcxa3uiz7tOwskcNBrnaZFPo8AL0fDgSvGpx",
+        "https://utfs.io/f/BhegMacQdV7xKZRQVwI6lV3f4Om0EpTCUB1gb5GdviQNrWuI",
+        "https://utfs.io/f/BhegMacQdV7xBtt7dgcQdV7xfrowZajygGJIS9ilU238kNcH",
+        "https://utfs.io/f/BhegMacQdV7xXprFsF67MsQUymfzwLBAFi46cetaKRITGxho",
+      ],
+      status: "Completed",
+      technologies: [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "TypeScript",
+        "JavaScript",
+      ],
+      github: "https://github.com/m4rrec0s/TrackEquip",
+      project: "https://track-equip.vercel.app/",
     },
   },
 ];

@@ -15,7 +15,7 @@ export interface ProjectItemProps {
     description: string;
     images: string[];
     status: ProjectStatus;
-    tecnologies: string[];
+    technologies: string[];
     github: string;
     project: string;
   };
@@ -44,7 +44,7 @@ export default function ProjectItem({ props }: ProjectItemProps) {
       <div className="flex flex-col justify-center gap-6">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <div>
-            <h2 className="text-2xl font-bold text-white">{props.name}</h2>
+            <h2 className="text-2xl font-bold text-white" translate="no">{props.name}</h2>
             <div className="flex gap-2">
               <span className="text-gray-400">{props.category}</span>
             </div>
@@ -68,7 +68,7 @@ export default function ProjectItem({ props }: ProjectItemProps) {
         <div>
           <h3 className="text-sm font-semibold mb-3">Used Technologies</h3>
           <div className="flex flex-wrap gap-4">
-            {props.tecnologies.map((tecnology, index) => (
+            {props.technologies.map((tecnology, index) => (
               <ProjectTechnologies key={index} technologies={[tecnology]} />
             ))}
           </div>
