@@ -5,6 +5,8 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
@@ -13,6 +15,32 @@ const ContactForm = () => {
 
   const sendEmail = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
+    const templateParams = {
+      from_name: name,
+      email: email,
+      message: message,
+    };
+
+    emailjs
+      .send(
+        "service_9imxb9n",
+        "template_xzh95cr",
+        templateParams,
+        "SwASm4lOIMWCS8BU-"
+      )
+      .then(
+        (response) => {
+          toast("Message sent successfully!");
+          console.log("SUCCESS!", response.status, response.text);
+          setName("");
+          setEmail("");
+          setMessage("");
+        },
+        (err) => {
+          console.log("FAILED...", err);
+        }
+      );
   };
 
   return (
@@ -29,11 +57,9 @@ const ContactForm = () => {
             <Input
               type="text"
               id="name"
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              value={name}
               className="bg-transparent"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
               required
             />
           </motion.div>
@@ -48,9 +74,7 @@ const ContactForm = () => {
               type="email"
               id="email"
               className="bg-transparent"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              onChange={(e) => setEmail(e.target.value)}
               value={email}
               required
             />
@@ -66,9 +90,7 @@ const ContactForm = () => {
             <Textarea
               id="message"
               className="bg-transparent"
-              onChange={(e) => {
-                setMessage(e.target.value);
-              }}
+              onChange={(e) => setMessage(e.target.value)}
               value={message}
               required
             />

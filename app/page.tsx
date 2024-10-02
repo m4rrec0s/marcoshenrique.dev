@@ -212,7 +212,6 @@ export default function Home() {
 
         <section className="py-16 px-6 bg-background w-full flex justify-center">
           <div className="w-full max-w-[1300px] space-y-8 max-sm:space-y-6">
-            {/* Título Principal */}
             <motion.h2
               className="text-5xl font-bold text-center max-sm:text-3xl"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -222,9 +221,7 @@ export default function Home() {
               About Me
             </motion.h2>
 
-            {/* Cards Container */}
             <div className="grid grid-cols-2 gap-6 max-sm:grid-cols-1">
-              {/* Card 1: Quem sou eu */}
               <Card className="p-6 bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <motion.div
                   initial={{ y: 30, opacity: 0 }}
@@ -247,7 +244,6 @@ export default function Home() {
                 </motion.div>
               </Card>
 
-              {/* Card 2: Objetivos */}
               <Card className="p-6 bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <motion.div
                   initial={{ y: 30, opacity: 0 }}
@@ -296,7 +292,6 @@ export default function Home() {
 
         <section id="projects" className="my-6">
           <div className="w-full h-full flex justify-center items-center flex-col">
-            {/* <h2 className="text-3xl font-semibold ">Projetos</h2> */}
             <div className="flex mt-6 max-md:hidden mx-auto w-[80%] max-md:w-[80%] mb-14">
               <Carousel
                 className="w-full relative"
