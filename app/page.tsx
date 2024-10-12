@@ -102,7 +102,7 @@ const projects: ProjectItemProps[] = [
 export default function Home() {
   return (
     <main className="flex-1 flex flex-col justify-center items-center">
-      <div className="fixed top-0 z-50">
+      <div className="fixed top-5 z-50">
         <Header />
       </div>
 
@@ -183,6 +183,46 @@ export default function Home() {
               </div>
             </div>
           </motion.div>
+        </section>
+
+        <section id="technologies" className="w-full my-6 text-center">
+          <div className="w-full max-w-5xl mx-auto px-4 md:px-6 py-24 ">
+            <ScrollCarrossel />
+          </div>
+        </section>
+
+        <section id="projects" className="my-6">
+          <h2 className="text-3xl font-semibold mt-6 text-center">My Stack</h2>
+          <div className="w-full h-full flex justify-center items-center flex-col">
+            <div className="flex mt-6 max-md:hidden mx-auto w-[80%] max-md:w-[80%] mb-14">
+              <Carousel
+                className="w-full relative"
+                plugins={[
+                  Autoplay({
+                    delay: 4000,
+                  }),
+                ]}
+              >
+                <CarouselContent className="relative flex items-center">
+                  {projects.map((project, index) => (
+                    <CarouselItem
+                      className="w-full flex justify-center md:px-6"
+                      key={index}
+                    >
+                      <ProjectItem props={project.props} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="absolute left-0" />
+                <CarouselNext className="absolute right-0" />
+              </Carousel>
+            </div>
+            <div className="max-md:grid grid-cols-1 gap-20 px-10 hidden mt-6 mb-6">
+              {projects.map((project, index) => (
+                <ProjectItem key={index} props={project.props} />
+              ))}
+            </div>
+          </div>
         </section>
 
         <section
@@ -283,45 +323,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="technologies" className="w-full my-6 text-center">
-          <h2 className="text-3xl font-semibold mt-6">My Stack</h2>
-          <div className="w-full max-w-5xl mx-auto px-4 md:px-6 py-24">
-            <ScrollCarrossel />
-          </div>
-        </section>
-
-        <section id="projects" className="my-6">
-          <div className="w-full h-full flex justify-center items-center flex-col">
-            <div className="flex mt-6 max-md:hidden mx-auto w-[80%] max-md:w-[80%] mb-14">
-              <Carousel
-                className="w-full relative"
-                plugins={[
-                  Autoplay({
-                    delay: 4000,
-                  }),
-                ]}
-              >
-                <CarouselContent className="relative flex items-center">
-                  {projects.map((project, index) => (
-                    <CarouselItem
-                      className="w-full flex justify-center md:px-6"
-                      key={index}
-                    >
-                      <ProjectItem props={project.props} />
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="absolute left-0" />
-                <CarouselNext className="absolute right-0" />
-              </Carousel>
-            </div>
-            <div className="max-md:grid grid-cols-1 gap-20 px-10 hidden mt-6 mb-6">
-              {projects.map((project, index) => (
-                <ProjectItem key={index} props={project.props} />
-              ))}
-            </div>
-          </div>
-        </section>
         <section
           id="contact"
           className="py-10 px-5 w-full flex justify-center bg-gradient-to-b from-background to-muted-foreground"

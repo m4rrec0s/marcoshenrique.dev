@@ -2,12 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "./ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 import {
   BrainIcon,
   HomeIcon,
@@ -27,6 +22,29 @@ const Header = () => {
     }
   };
 
+  const links = [
+    {
+      id: "home",
+      name: "Home",
+    },
+    {
+      id: "about",
+      name: "About me",
+    },
+    {
+      id: "technologies",
+      name: "Technologies",
+    },
+    {
+      id: "projects",
+      name: "Projects",
+    },
+    {
+      id: "contact",
+      name: "Contact",
+    },
+  ];
+
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   return (
@@ -34,77 +52,27 @@ const Header = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
-      className="w-[100vw] flex justify-center py-2 border-b border-gray-800 bg-background bg-opacity-30"
+      className="w-full flex justify-center px-5 py-4 bg-white/10 rounded-full backdrop-blur-sm shadow-md"
     >
-      <div className="flex justify-between items-center h-full px-5 max-w-[1000px] w-full">
-        <Link href="/">
-          <div className="text-xl font-bold">@marcos</div>
-        </Link>
+      <div className="flex items-center h-full w-full">
         <nav className="max-sm:hidden">
-          <motion.ul id="underline" className="flex items-center space-x-4">
-            <motion.li className="text-sm">
-              <Link
-                href="#home"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("home");
-                }}
-                className="hover:text-primary transition-colors"
-              >
-                Home
-              </Link>
-            </motion.li>
-            <motion.li className="text-sm">
-              <Link
-                href="#about"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("about");
-                }}
-                className="hover:text-primary transition-colors"
-              >
-                About me
-              </Link>
-            </motion.li>
-            <motion.li className="text-sm">
-              <Link
-                href="#technologies"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("technologies");
-                }}
-                className="hover:text-primary transition-colors"
-              >
-                Technologies
-              </Link>
-            </motion.li>
-            <motion.li className="text-sm">
-              <Link
-                href="#projects"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("projects");
-                }}
-                className="hover:text-primary transition-colors"
-              >
-                Projects
-              </Link>
-            </motion.li>
-            <motion.li>
-              <Link
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("contact");
-                }}
-                className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
-              >
-                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl hover:bg-slate-950">
-                  Contact
-                </span>
-              </Link>
-            </motion.li>
+          <motion.ul id="underline" className="flex items-center space-x-10">
+            {links.map((link) => {
+              return (
+                <motion.li key={link.id}>
+                  <Link
+                    href={`#${link.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(link.id);
+                    }}
+                    className="text-sm font-bold"
+                  >
+                    {link.name}
+                  </Link>
+                </motion.li>
+              );
+            })}
           </motion.ul>
         </nav>
         <div className="sm:hidden flex gap-3 items-center">
@@ -114,12 +82,9 @@ const Header = () => {
               e.preventDefault();
               scrollToSection("contact");
             }}
-            className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+            className="hover:text-primary transition-colors"
           >
-            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl hover:bg-slate-950">
-              Contact
-            </span>
+            Contact
           </Link>
 
           <Button
@@ -129,6 +94,8 @@ const Header = () => {
           >
             <MenuIcon size={20} />
           </Button>
+
+          {/* Modal para celulares */}
 
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetContent>
