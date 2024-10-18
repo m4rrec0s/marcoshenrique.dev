@@ -102,7 +102,7 @@ const projects: ProjectItemProps[] = [
 export default function Home() {
   return (
     <main className="flex-1 flex flex-col justify-center items-center">
-      <div className="fixed top-5 z-50">
+      <div className="fixed top-5 z-50 max-md:top-0">
         <Header />
       </div>
 

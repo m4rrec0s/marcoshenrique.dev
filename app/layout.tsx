@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en" className="">
       <body className={montserrat.className}>
         {children}
-        {/* <BackgroundBeams /> */}
+        <BackgroundBeams />
         <Toaster />
       </body>
     </html>

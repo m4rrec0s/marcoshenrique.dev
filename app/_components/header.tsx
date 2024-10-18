@@ -52,7 +52,7 @@ const Header = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
-      className="w-full flex justify-center px-5 py-4 bg-white/10 rounded-full backdrop-blur-sm shadow-md"
+      className="w-full flex justify-center px-5 py-4 bg-white/10 rounded-full backdrop-blur-sm shadow-md max-md:px-10 max-md:py-6 max-md:rounded-none max-md:shadow-none max-md:w-screen max-md:bg-black/10"
     >
       <div className="flex items-center h-full w-full">
         <nav className="max-sm:hidden">
