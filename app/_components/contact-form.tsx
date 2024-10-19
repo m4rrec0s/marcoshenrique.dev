@@ -24,10 +24,10 @@ const ContactForm = () => {
 
     emailjs
       .send(
-        "service_9imxb9n",
-        "template_xzh95cr",
+        process.env.SERVICE as string,
+        process.env.TEMPLATE as string,
         templateParams,
-        "SwASm4lOIMWCS8BU-"
+        process.env.USER as string
       )
       .then(
         (response) => {
@@ -44,62 +44,52 @@ const ContactForm = () => {
   };
 
   return (
-    <Card className="bg-transparent pt-4">
-      <CardContent>
-        <form onSubmit={sendEmail} className="flex flex-col gap-6">
-          <motion.div
-            initial={{ opacity: 0, y: 10, x: -50 }}
-            whileInView={{ opacity: 1, y: 0, x: 0 }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-            exit={{ opacity: 0, y: 10, x: -50 }}
-          >
+    <div className="w-full max-w-[700px] mt-6">
+      <form onSubmit={sendEmail} className="flex flex-col gap-6 justify-end">
+        <div className="flex justify-between gap-6">
+          <div className="w-full">
             <Label htmlFor="name">Name</Label>
             <Input
               type="text"
               id="name"
               className="bg-transparent"
+              placeholder="Michael Scott"
               onChange={(e) => setName(e.target.value)}
               value={name}
               required
             />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 10, x: -50 }}
-            whileInView={{ opacity: 1, y: 0, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            exit={{ opacity: 0, y: 10, x: -50 }}
-          >
+          </div>
+          <div className="w-full">
             <Label htmlFor="email">E-mail</Label>
             <Input
               type="email"
               id="email"
               className="bg-transparent"
+              placeholder="michael@email.com"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               required
             />
-          </motion.div>
+          </div>
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10, x: -50 }}
-            whileInView={{ opacity: 1, y: 0, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            exit={{ opacity: 0, y: 10, x: -50 }}
-          >
-            <Label htmlFor="message">Message</Label>
-            <Textarea
-              id="message"
-              className="bg-transparent"
-              onChange={(e) => setMessage(e.target.value)}
-              value={message}
-              required
-            />
-          </motion.div>
+        <div>
+          <Label htmlFor="message">Message</Label>
+          <Textarea
+            id="message"
+            className="bg-transparent"
+            placeholder="Hello, I would like to talk to you about..."
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+            required
+          />
+        </div>
 
-          <Button type="submit">Submit</Button>
-        </form>
-      </CardContent>
-    </Card>
+        <Button type="submit" className="w-fit">
+          Submit
+        </Button>
+      </form>
+    </div>
   );
 };
 
