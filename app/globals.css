@@ -16,6 +16,7 @@
     /* #0D0D0D */
     --popover-foreground: 30 17% 95%;
     /* #F2E7DC */
+
     --primary: 174 96% 28%;
     /* #038C7F */
     --primary-foreground: 30 17% 95%;
@@ -24,35 +25,41 @@
     /* #027373 */
     --secondary-foreground: 30 17% 95%;
     /* #F2E7DC */
-    --muted: 176 27% 73%;
-    /* #A9D9D0 */
-    --muted-foreground: 174 20% 20%;
-    /* Ajuste para contrastar com muted */
-    --accent: 174 96% 28%;
-    /* #038C7F */
-    --accent-foreground: 30 17% 95%;
-    /* #F2E7DC */
+
+    --muted: 0 0% 80%;
+    /* #CCCCCC (Cinza claro) */
+    --muted-foreground: 0 0% 20%;
+    /* #333333 (Cinza escuro) */
+
+    --accent: 0 0% 80%;
+    /* #CCCCCC (Cinza claro) */
+    --accent-foreground: 0 0% 20%;
+    /* #333333 (Cinza escuro) */
+
     --destructive: 0 100% 50%;
     /* Vermelho padrão */
     --destructive-foreground: 30 17% 95%;
     /* #F2E7DC */
-    --border: 176 27% 73%;
-    /* #A9D9D0 */
-    --input: 176 27% 73%;
-    /* #A9D9D0 */
-    --ring: 174 96% 28%;
-    /* #038C7F */
+
+    --border: 0 0% 80%;
+    /* #CCCCCC */
+    --input: 0 0% 80%;
+    /* #CCCCCC */
+    --ring: 0 0% 20%;
+    /* #333333 */
+
     --radius: 0.5rem;
-    --chart-1: 174 96% 28%;
-    /* #038C7F */
-    --chart-2: 176 97% 25%;
-    /* #027373 */
-    --chart-3: 174 96% 28%;
-    /* #038C7F */
-    --chart-4: 30 17% 95%;
-    /* #F2E7DC */
-    --chart-5: 176 27% 73%;
-    /* #A9D9D0 */
+
+    --chart-1: 0 0% 20%;
+    /* #333333 */
+    --chart-2: 0 0% 40%;
+    /* #666666 */
+    --chart-3: 0 0% 60%;
+    /* #999999 */
+    --chart-4: 0 0% 80%;
+    /* #CCCCCC */
+    --chart-5: 0 0% 5%;
+    /* #0D0D0D */
   }
 
   .dark {
@@ -68,6 +75,7 @@
     /* #F2E7DC */
     --popover-foreground: 0 0% 5%;
     /* #0D0D0D */
+
     --primary: 174 96% 28%;
     /* #038C7F */
     --primary-foreground: 30 17% 95%;
@@ -76,36 +84,40 @@
     /* #027373 */
     --secondary-foreground: 30 17% 95%;
     /* #F2E7DC */
-    --muted: 176 27% 73%;
-    /* #A9D9D0 */
-    --muted-foreground: 174 20% 20%;
-    /* Ajuste para contrastar com muted */
-    --accent: 174 96% 28%;
-    /* #038C7F */
-    --accent-foreground: 30 17% 95%;
-    /* #F2E7DC */
+
+    --muted: 0 0% 80%;
+    /* #CCCCCC */
+    --muted-foreground: 0 0% 20%;
+    /* #333333 */
+
+    --accent: 0 0% 80%;
+    /* #CCCCCC */
+    --accent-foreground: 0 0% 20%;
+    /* #333333 */
+
     --destructive: 0 62.8% 30.6%;
-    /* Ajuste padrão */
+    /* Vermelho ajustado */
     --destructive-foreground: 30 17% 95%;
     /* #F2E7DC */
-    --border: 176 27% 73%;
-    /* #A9D9D0 */
-    --input: 176 27% 73%;
-    /* #A9D9D0 */
-    --ring: 174 96% 28%;
-    /* #038C7F */
-    --chart-1: 174 96% 28%;
-    /* #038C7F */
-    --chart-2: 176 97% 25%;
-    /* #027373 */
-    --chart-3: 174 96% 28%;
-    /* #038C7F */
-    --chart-4: 0 0% 5%;
-    /* #0D0D0D */
-    --chart-5: 176 27% 73%;
-    /* #A9D9D0 */
-  }
 
+    --border: 0 0% 80%;
+    /* #CCCCCC */
+    --input: 0 0% 80%;
+    /* #CCCCCC */
+    --ring: 0 0% 20%;
+    /* #333333 */
+
+    --chart-1: 0 0% 20%;
+    /* #333333 */
+    --chart-2: 0 0% 40%;
+    /* #666666 */
+    --chart-3: 0 0% 60%;
+    /* #999999 */
+    --chart-4: 0 0% 80%;
+    /* #CCCCCC */
+    --chart-5: 0 0% 5%;
+    /* #0D0D0D */
+  }
 }
 
 @layer base {
