@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Header from "./_components/header";
-import ScrollCarrossel from "./_components/scroll-carrousel";
 import Link from "next/link";
 import { Github, Instagram, Linkedin } from "lucide-react";
 import ProjectItem, { ProjectItemProps } from "./_components/project-item";
@@ -15,9 +14,10 @@ import {
 } from "./_components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
-import ContactForm from "./_components/contact-form";
-import { Card } from "./_components/ui/card";
 import { Separator } from "./_components/ui/separator";
+import Title from "./_components/title";
+import TechnologiesList from "./_components/technologies-list";
+import ContactForm from "./_components/contact-form";
 
 const projects: ProjectItemProps[] = [
   {
@@ -99,6 +99,41 @@ const projects: ProjectItemProps[] = [
   },
 ];
 
+const names = [
+  "Next.js",
+  "React",
+  "React Native",
+  "Expo",
+  "TypeScript",
+  "JavaScript",
+  "Python",
+  "Django",
+  "Nuxt",
+  "Vue",
+  "Angular",
+  "Java",
+  "Spring Boot",
+  "PHP",
+  "Laravel",
+  "Prisma",
+  "PostgreSQL",
+  "MySQL",
+  "Docker",
+  "HTML",
+  "CSS",
+  "SASS",
+  "Tailwind",
+  "Bootstrap",
+  "Framer Motion",
+  "Styled Components",
+  "Material UI",
+  "Git",
+  "GitHub",
+  "REST API",
+  "Jest",
+  "Testing Library",
+];
+
 export default function Home() {
   return (
     <main className="flex-1 flex flex-col justify-center items-center">
@@ -141,7 +176,7 @@ export default function Home() {
                   <strong className="text-primary font-normal">Web</strong>{" "}
                   Developer
                 </p>
-                <p className="opacity-60 text-sm max-w-[800px] mt-3">
+                <p className="opacity-60 text-lg max-w-[600px] mt-3">
                   Developer of modern and efficient web applications using
                   technologies such as Next.js and Node.js.
                 </p>
@@ -155,7 +190,7 @@ export default function Home() {
                     className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
                   >
                     <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl hover:bg-slate-950">
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-3 py-1 text-sm font-medium backdrop-blur-3xl hover:bg-slate-950">
                       Download CV
                     </span>
                   </Link>
@@ -185,16 +220,16 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section id="technologies" className="w-full my-6 text-center">
-          <div className="w-full max-w-5xl mx-auto px-4 md:px-6 py-24 ">
-            <ScrollCarrossel />
+        <section id="projects" className="mt-6 mb-28">
+          <div className="w-full flex justify-center mb-20">
+            <Title
+              span="Resultados do mundo real"
+              title="Pejetos em destaque"
+              paragraph="Aqui estão alguns dos projetos que realizei ao longo do meu aprendizado, evoluindo a cada novo desafio."
+            />
           </div>
-        </section>
-
-        <section id="projects" className="my-6">
-          <h2 className="text-3xl font-semibold mt-6 text-center">My Stack</h2>
           <div className="w-full h-full flex justify-center items-center flex-col">
-            <div className="flex mt-6 max-md:hidden mx-auto w-[80%] max-md:w-[80%] mb-14">
+            <div className="flex mt-6 max-md:hidden mx-auto w-[80%] max-md:w-[80%]">
               <Carousel
                 className="w-full relative"
                 plugins={[
@@ -206,8 +241,8 @@ export default function Home() {
                 <CarouselContent className="relative flex items-center">
                   {projects.map((project, index) => (
                     <CarouselItem
-                      className="w-full flex justify-center md:px-6"
                       key={index}
+                      className="w-full flex justify-center md:px-6"
                     >
                       <ProjectItem props={project.props} />
                     </CarouselItem>
@@ -225,168 +260,35 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          id="about"
-          className="flex flex-col gap-4 py-6 px-5 bg-inherit w-full items-center mb-6"
-        >
-          <motion.p
-            initial={{ x: -50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            exit={{ x: -50, opacity: 0 }}
-            className="text-xl font-mono text-center"
-          >
-            &quot;Programmers and artists are the only professionals who have
-            their profession as a hobby.&quot;
-          </motion.p>
-          <motion.p
-            initial={{ x: -50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            exit={{ x: -50, opacity: 0 }}
-            className="text-md font-semibold"
-          >
-            Rafael Lain
-          </motion.p>
-        </section>
+        <section className="w-full">
+          <div className="w-full flex justify-center">
+            <Title
+              span="Lista de tecnologias"
+              title="Habilidades"
+              paragraph="Aqui estão alguns das tecnologias que tenho experiência e que utilizo em meus projetos."
+            />
+          </div>
 
-        <section className="py-16 px-6 bg-background w-full flex justify-center">
-          <div className="w-full max-w-[1300px] space-y-8 max-sm:space-y-6">
-            <motion.h2
-              className="text-5xl font-bold text-center max-sm:text-3xl"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              About Me
-            </motion.h2>
-
-            <div className="grid grid-cols-2 gap-6 max-sm:grid-cols-1">
-              <Card className="p-6 bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <h3 className="text-2xl font-semibold mb-4">Who am I? 🤓</h3>
-                  <p className="text-lg font-light leading-relaxed opacity-80">
-                    Nice to meet you! I’m a web developer passionate about
-                    creating
-                    <strong className="underline">
-                      {" "}
-                      amazing online experiences
-                    </strong>
-                    . My journey involves exploring various technologies like
-                    TypeScript, Next.js, React, and more. I strive to deliver
-                    high-quality, impactful projects with a keen eye for design
-                    and usability.
-                  </p>
-                </motion.div>
-              </Card>
-
-              <Card className="p-6 bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <h3 className="text-2xl font-semibold mb-4">My Goals ✅</h3>
-                  <div className="space-y-3">
-                    <p className="text-lg font-light leading-relaxed opacity-80">
-                      •{" "}
-                      <strong className="underline">Professional Goal:</strong>{" "}
-                      To work as a web developer within a dynamic team,
-                      contributing to innovative and impactful projects.
-                    </p>
-                    <p className="text-lg font-light leading-relaxed opacity-80">
-                      • <strong className="underline">Specialization:</strong> I
-                      aim to specialize in front-end development, exploring
-                      frameworks like React and Next.js.
-                    </p>
-                    <p className="text-lg font-light leading-relaxed opacity-80">
-                      •{" "}
-                      <strong className="underline">
-                        Collaboration and Continuous Learning:
-                      </strong>{" "}
-                      I seek to be part of a collaborative environment.
-                    </p>
-                    <p className="text-lg font-light leading-relaxed opacity-80">
-                      •{" "}
-                      <strong className="underline">Impact and Quality:</strong>{" "}
-                      My goal is to deliver clean, optimized, and high-quality
-                      code.
-                    </p>
-                  </div>
-                </motion.div>
-              </Card>
-            </div>
+          <div className="mx-auto mt-14 max-w-4xl space-y-8">
+            <TechnologiesList names={names} />
           </div>
         </section>
 
-        <section
-          id="contact"
-          className="py-10 px-5 w-full flex justify-center bg-gradient-to-b from-background to-muted-foreground"
-        >
-          <div className="w-full max-w-[1300px] flex justify-center">
-            <div className="w-full px-5 flex-1 flex-col items-center">
-              <div className="w-full flex gap-6 items-center lg:justify-center">
-                <div className="flex-1 max-w-[500px]">
-                  <div className="mb-6">
-                    <motion.h2
-                      initial={{ x: -50, opacity: 0 }}
-                      whileInView={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.5, delay: 0.2 }}
-                      exit={{ x: -50, opacity: 0 }}
-                      className="text-4xl flex flex-col font-bold"
-                    >
-                      <motion.span
-                        initial={{ x: -50, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        exit={{ x: -50, opacity: 0 }}
-                        className="text-2xl font-normal"
-                      >
-                        Get in
-                      </motion.span>
-                      Contact
-                    </motion.h2>
-                  </div>
-                  <ContactForm />
-                </div>
-                <motion.div
-                  initial={{ y: 50, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  exit={{ y: 50, opacity: 0 }}
-                  className="flex flex-col gap-2 w-fit pt-16"
-                >
-                  <Link
-                    href="https://github.com/m4rrec0s"
-                    target="_blank"
-                    className="hover:text-primary hover:border-primary border border-white rounded-full p-2"
-                  >
-                    <Github size={18} />
-                  </Link>
-                  <Link
-                    className="hover:text-primary hover:border-primary border border-white rounded-full p-2"
-                    href="https://www.instagram.com/marcos_henrique_eu/"
-                  >
-                    <Instagram size={18} />
-                  </Link>
-                  <Link
-                    className="hover:text-primary hover:border-primary border border-white rounded-full p-2"
-                    href="https://www.linkedin.com/in/marcos-henrique-ara%C3%BAjo-7a641a242/"
-                  >
-                    <Linkedin size={18} />
-                  </Link>
-                </motion.div>
-              </div>
-            </div>
+        <section id="contact" className="my-20">
+          <div className="w-full flex justify-center">
+            <Title
+              span="Vamos trabalhar juntos"
+              title="Contato"
+              paragraph="Estou atualmente disponível para novos projetos. Se você tem uma ideia em mente, adoraria saber mais sobre ela."
+            />
+          </div>
+          <div className="w-full flex justify-center items-center">
+            <ContactForm />
           </div>
         </section>
       </div>
       <Separator className="opacity-50" />
-      <footer className="w-full bg-muted-foreground flex justify-center items-center py-6">
+      <footer className="w-full flex justify-center items-center py-6">
         <p className="text-xs font-semibold text-center">
           © 2024 Marcos Henrique Araújo. All rights reserved.
         </p>
