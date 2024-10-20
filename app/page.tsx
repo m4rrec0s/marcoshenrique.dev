@@ -220,12 +220,13 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section id="projects" className="mt-6 mb-28">
+        <section className="mt-6 mb-28">
           <div className="w-full flex justify-center mb-20">
             <Title
               span="Resultados do mundo real"
               title="Pejetos em destaque"
               paragraph="Aqui estão alguns dos projetos que realizei ao longo do meu aprendizado, evoluindo a cada novo desafio."
+              id="projects"
             />
           </div>
           <div className="w-full h-full flex justify-center items-center flex-col">
@@ -266,6 +267,7 @@ export default function Home() {
               span="Lista de tecnologias"
               title="Habilidades"
               paragraph="Aqui estão alguns das tecnologias que tenho experiência e que utilizo em meus projetos."
+              id="skills"
             />
           </div>
 
@@ -274,12 +276,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="my-20">
+        <section className="my-20">
           <div className="w-full flex justify-center">
             <Title
               span="Vamos trabalhar juntos"
               title="Contato"
               paragraph="Estou atualmente disponível para novos projetos. Se você tem uma ideia em mente, adoraria saber mais sobre ela."
+              id="contact"
             />
           </div>
           <div className="w-full flex justify-center items-center">
