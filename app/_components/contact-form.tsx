@@ -24,10 +24,10 @@ const ContactForm = () => {
 
     emailjs
       .send(
-        process.env.SERVICE as string,
-        process.env.TEMPLATE as string,
+        "service_9imxb9n",
+        "template_xzh95cr",
         templateParams,
-        process.env.USER as string
+        "SwASm4lOIMWCS8BU-"
       )
       .then(
         (response) => {
@@ -38,15 +38,15 @@ const ContactForm = () => {
           setMessage("");
         },
         (err) => {
-          console.log("FAILED...", err);
+          toast("Failed to send message: " + err);
         }
       );
   };
 
   return (
-    <div className="w-full max-w-[700px] mt-6">
+    <div className="w-full max-w-[700px] mt-6 px-5">
       <form onSubmit={sendEmail} className="flex flex-col gap-6 justify-end">
-        <div className="flex justify-between gap-6">
+        <div className="flex justify-between gap-6 max-md:flex-col">
           <div className="w-full">
             <Label htmlFor="name">Name</Label>
             <Input
@@ -85,9 +85,11 @@ const ContactForm = () => {
           />
         </div>
 
-        <Button type="submit" className="w-fit">
-          Submit
-        </Button>
+        <div className="w-full flex justify-end">
+          <Button type="submit" className="w-fit">
+            Submit
+          </Button>
+        </div>
       </form>
     </div>
   );

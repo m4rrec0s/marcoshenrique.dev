@@ -28,8 +28,8 @@
 
     --muted: 0 0% 80%;
     /* #CCCCCC (Cinza claro) */
-    --muted-foreground: 0 0% 20%;
-    /* #333333 (Cinza escuro) */
+    --muted-foreground: 0 0% 33.3%;
+    /* #555555 (Cinza escuro) */
 
     --accent: 0 0% 80%;
     /* #CCCCCC (Cinza claro) */
