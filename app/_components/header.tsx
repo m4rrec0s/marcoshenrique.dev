@@ -2,19 +2,31 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
+import { useEffect, useMemo, useState } from "react";
 import {
-  BrainIcon,
   HomeIcon,
-  MenuIcon,
-  PhoneIcon,
   PresentationIcon,
-  User2Icon,
+  PhoneIcon,
+  BrainIcon,
+  MenuIcon,
 } from "lucide-react";
-import { useState } from "react";
 import { Button } from "./ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 
 const Header = () => {
+  const links = useMemo(
+    () => [
+      { id: "home", name: "Home" },
+      { id: "projects", name: "Projects" },
+      { id: "skills", name: "Skills" },
+      { id: "contact", name: "Contact" },
+    ],
+    []
+  );
+
+  const [selected, setSelected] = useState(links[0].id);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -22,57 +34,58 @@ const Header = () => {
     }
   };
 
-  const links = [
-    {
-      id: "home",
-      name: "Home",
-    },
-    {
-      id: "about",
-      name: "About me",
-    },
-    {
-      id: "technologies",
-      name: "Technologies",
-    },
-    {
-      id: "projects",
-      name: "Projects",
-    },
-    {
-      id: "contact",
-      name: "Contact",
-    },
-  ];
-
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      links.forEach((link) => {
+        const section = document.getElementById(link.id);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+            setSelected(link.id);
+          }
+        }
+      });
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [links]);
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
-      className="w-full flex justify-center px-5 py-4 bg-white/10 rounded-full backdrop-blur-sm shadow-md max-md:px-10 max-md:py-6 max-md:rounded-none max-md:shadow-none max-md:w-screen max-md:bg-black/10"
+      className="w-full flex justify-center px-2 py-4 bg-white/10 rounded-full backdrop-blur-sm shadow-md max-md:px-10 max-md:py-6 max-md:rounded-none max-md:shadow-none max-md:w-screen max-md:bg-black/10 max-md:border-b border-white/10"
     >
       <div className="flex items-center h-full w-full max-md:justify-end">
         <nav className="max-sm:hidden">
-          <motion.ul id="underline" className="flex items-center space-x-10">
-            {links.map((link) => {
-              return (
-                <motion.li key={link.id}>
-                  <Link
-                    href={`#${link.id}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(link.id);
-                    }}
-                    className="text-sm font-bold"
-                  >
-                    {link.name}
-                  </Link>
-                </motion.li>
-              );
-            })}
+          <motion.ul
+            id="underline"
+            className="flex items-center space-x-5 relative"
+          >
+            {links.map((link) => (
+              <motion.li key={link.id} className="relative">
+                <Link
+                  href={`#${link.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(link.id);
+                  }}
+                  className={`text-sm font-bold relative px-5 py-3 rounded-full z-10 ${
+                    selected === link.id ? "text-white" : "text-gray-400"
+                  }`}
+                >
+                  {link.name}
+                  {/* {selected === link.id && (
+                    <motion.span
+                      layoutId="pill-tab"
+                      className="absolute w-full inset-0 bg-black/60 rounded-full z-0"
+                      transition={{ type: "spring", duration: 0.5 }}
+                    />
+                  )} */}
+                </Link>
+              </motion.li>
+            ))}
           </motion.ul>
         </nav>
         <div className="sm:hidden flex gap-3 items-center">
@@ -95,84 +108,34 @@ const Header = () => {
             <MenuIcon size={20} />
           </Button>
 
-          {/* Modal para celulares */}
-
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
             <SheetContent>
               <SheetHeader>
                 <SheetTitle className="text-left font-bold">Menu</SheetTitle>
               </SheetHeader>
-              <motion.ul id="underline" className="mt-12 flex flex-col gap-6">
-                <motion.li className="hover:bg-muted-foreground rounded-lg">
-                  <Link
-                    href="#home"
-                    onClick={(e) => {
-                      setIsSheetOpen(false);
-                      e.preventDefault();
-                      scrollToSection("home");
-                    }}
-                    className="w-full px-3 py-3 text-sm flex gap-2"
+              <motion.ul className="mt-12 flex flex-col gap-6">
+                {links.map((link) => (
+                  <motion.li
+                    key={link.id}
+                    className="hover:bg-muted-foreground rounded-lg"
                   >
-                    <HomeIcon size={20} />
-                    Home
-                  </Link>
-                </motion.li>
-                <motion.li className="hover:bg-muted-foreground rounded-lg">
-                  <Link
-                    href="#about"
-                    onClick={(e) => {
-                      setIsSheetOpen(false);
-                      e.preventDefault();
-                      scrollToSection("about");
-                    }}
-                    className="w-full px-3 py-3 text-sm flex gap-2"
-                  >
-                    <User2Icon size={20} />
-                    About me
-                  </Link>
-                </motion.li>
-                <motion.li className="hover:bg-muted-foreground rounded-lg">
-                  <Link
-                    href="#technologies"
-                    onClick={(e) => {
-                      setIsSheetOpen(false);
-                      e.preventDefault();
-                      scrollToSection("technologies");
-                    }}
-                    className="w-full px-3 py-3 text-sm flex gap-2"
-                  >
-                    <BrainIcon size={20} />
-                    Technologies
-                  </Link>
-                </motion.li>
-                <motion.li className="hover:bg-muted-foreground rounded-lg">
-                  <Link
-                    href="#projects"
-                    onClick={(e) => {
-                      setIsSheetOpen(false);
-                      e.preventDefault();
-                      scrollToSection("projects");
-                    }}
-                    className="w-full px-3 py-3 text-sm flex gap-2"
-                  >
-                    <PresentationIcon size={20} />
-                    Projects
-                  </Link>
-                </motion.li>
-                <motion.li className="hover:bg-muted-foreground rounded-lg">
-                  <Link
-                    href="#contact"
-                    onClick={(e) => {
-                      setIsSheetOpen(false);
-                      e.preventDefault();
-                      scrollToSection("contact");
-                    }}
-                    className="w-full px-3 py-3 text-sm flex gap-2"
-                  >
-                    <PhoneIcon size={20} />
-                    Contact
-                  </Link>
-                </motion.li>
+                    <Link
+                      href={`#${link.id}`}
+                      onClick={(e) => {
+                        setIsSheetOpen(false);
+                        e.preventDefault();
+                        scrollToSection(link.id);
+                      }}
+                      className="w-full px-3 py-3 text-sm flex gap-2"
+                    >
+                      {link.id === "home" && <HomeIcon size={20} />}
+                      {link.id === "projects" && <PresentationIcon size={20} />}
+                      {link.id === "skills" && <BrainIcon size={20} />}
+                      {link.id === "contact" && <PhoneIcon size={20} />}
+                      {link.name}
+                    </Link>
+                  </motion.li>
+                ))}
               </motion.ul>
             </SheetContent>
           </Sheet>
