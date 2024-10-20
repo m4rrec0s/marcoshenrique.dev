@@ -2,11 +2,15 @@ interface TitleProps {
   title: string;
   span: string;
   paragraph?: string;
+  id?: string;
 }
 
-const Title = ({ title, span, paragraph }: TitleProps) => {
+const Title = ({ title, span, paragraph, id }: TitleProps) => {
   return (
-    <div className="w-full justify-center items-center text-center max-w-[600px] px-5">
+    <div
+      id={id}
+      className="w-full justify-center items-center text-center max-w-[600px] px-5"
+    >
       <h3 className="bg-gradient-to-r from-[#038C7F] to-[#A9D9D0] bg-clip-text font-semibold uppercase tracking-widest text-transparent">
         {span}
       </h3>
