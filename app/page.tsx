@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Header from "./_components/header";
 import Link from "next/link";
-import { Github, Instagram, Linkedin } from "lucide-react";
+import { ArrowDown, Github, Instagram, Linkedin } from "lucide-react";
 import ProjectItem, { ProjectItemProps } from "./_components/project-item";
 import {
   Carousel,
@@ -142,7 +142,7 @@ export default function Home() {
       </div>
 
       <div className="z-10 w-full">
-        <section id="home" className="h-[100vh] pt-[180px]">
+        <section id="home" className="relative h-[100vh] pt-[180px] w-full">
           <motion.div
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -216,6 +216,29 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
+            </div>
+
+            <div className="w-full h-full flex items-center justify-center">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                exit={{ opacity: 0 }}
+                className="absolute bottom-5 z-50 rounded-full bg-muted-foreground animate-bounce"
+              >
+                <Link
+                  href="#projects"
+                  className="flex justify-center items-center p-4 border border-primary rounded-full"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document
+                      .querySelector("#projects")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  <ArrowDown size={24} />
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </section>
