@@ -185,7 +185,7 @@ export default function Home() {
                   <Link
                     target="_blank"
                     href={
-                      "https://drive.google.com/file/d/17gyYLCQsvaZUceGxuFR-IkMgQ8ajlz6j/view?usp=drive_link"
+                      "https://docs.google.com/document/d/16F6-eg26HGoEi4NpvgoayefA2A0SfIie/edit?usp=sharing&ouid=101988238188647654288&rtpof=true&sd=true"
                     }
                     className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
                   >
