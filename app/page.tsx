@@ -22,6 +22,24 @@ import ContactForm from "./_components/contact-form";
 const projects: ProjectItemProps[] = [
   {
     props: {
+      name: "A²DN FITNESS",
+      category: "Presentation website",
+      description:
+        "The project is a presentation website for a gym, developed using the Next.js framework.",
+      images: [
+        "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7x6hcEvopN8fuSIwAyMtVlakG9WErLCDYi21Un",
+        "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xDSTQB81TkldOxniDSwmXAE8QRLK6UrY3q9vs",
+        "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xQhXGhndtpv3VXyNPswOukqdW8jrzxclI5fMZ",
+        "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xiVYcOshbZ9JDS8lYxUgBhVpq0kmQRiLMtX3a",
+      ],
+      status: "Completed",
+      technologies: ["Next.js", "React", "Tailwind", "TypeScript"],
+      github: "https://github.com/m4rrec0s/aadn-fitness",
+      project: "https://aadn-fitness.vercel.app/",
+    },
+  },
+  {
+    props: {
       name: "MH food",
       category: "Food Delivery Application",
       description:
@@ -49,6 +67,30 @@ const projects: ProjectItemProps[] = [
   },
   {
     props: {
+      name: "TrackEquip",
+      category: "Equipment Tracking Application",
+      description:
+        "The project is a web application for tracking equipment. It includes equipment search, viewing equipment details and status of the equipment.",
+      images: [
+        "https://utfs.io/f/BhegMacQdV7xNcxa3uiz7tOwskcNBrnaZFPo8AL0fDgSvGpx",
+        "https://utfs.io/f/BhegMacQdV7xKZRQVwI6lV3f4Om0EpTCUB1gb5GdviQNrWuI",
+        "https://utfs.io/f/BhegMacQdV7xBtt7dgcQdV7xfrowZajygGJIS9ilU238kNcH",
+        "https://utfs.io/f/BhegMacQdV7xXprFsF67MsQUymfzwLBAFi46cetaKRITGxho",
+      ],
+      status: "Completed",
+      technologies: [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "TypeScript",
+        "JavaScript",
+      ],
+      github: "https://github.com/m4rrec0s/TrackEquip",
+      project: "https://track-equip.vercel.app/",
+    },
+  },
+  {
+    props: {
       name: "TaskList",
       category: "Training web application",
       description:
@@ -71,30 +113,6 @@ const projects: ProjectItemProps[] = [
       ],
       github: "https://github.com/m4rrec0s/tasklist-app",
       project: "https://tasklist-app-eight.vercel.app/",
-    },
-  },
-  {
-    props: {
-      name: "TrackEquip",
-      category: "Equipment Tracking Application",
-      description:
-        "The project is a web application for tracking equipment. It includes equipment search, viewing equipment details and status of the equipment.",
-      images: [
-        "https://utfs.io/f/BhegMacQdV7xNcxa3uiz7tOwskcNBrnaZFPo8AL0fDgSvGpx",
-        "https://utfs.io/f/BhegMacQdV7xKZRQVwI6lV3f4Om0EpTCUB1gb5GdviQNrWuI",
-        "https://utfs.io/f/BhegMacQdV7xBtt7dgcQdV7xfrowZajygGJIS9ilU238kNcH",
-        "https://utfs.io/f/BhegMacQdV7xXprFsF67MsQUymfzwLBAFi46cetaKRITGxho",
-      ],
-      status: "Completed",
-      technologies: [
-        "Next.js",
-        "React",
-        "Tailwind",
-        "TypeScript",
-        "JavaScript",
-      ],
-      github: "https://github.com/m4rrec0s/TrackEquip",
-      project: "https://track-equip.vercel.app/",
     },
   },
 ];

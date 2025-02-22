@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import { BackgroundBeams } from "./_components/ui/background-beams";
 import { Toaster } from "./_components/ui/sonner";
+import { BackgroundLines } from "./_components/ui/background-lines";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -19,8 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="">
       <body className={montserrat.className}>
-        {children}
-        <BackgroundBeams />
+        <BackgroundLines className="bg-background">{children}</BackgroundLines>
+
         <Toaster />
       </body>
     </html>
