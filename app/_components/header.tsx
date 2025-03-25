@@ -16,10 +16,10 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 const Header = () => {
   const links = useMemo(
     () => [
-      { id: "home", name: "Home" },
-      { id: "projects", name: "Projects" },
-      { id: "skills", name: "Skills" },
-      { id: "contact", name: "Contact" },
+      { id: "home", name: "Início" },
+      { id: "projects", name: "Projetos" },
+      { id: "skills", name: "Habilidades" },
+      { id: "contact", name: "Contato" },
     ],
     []
   );

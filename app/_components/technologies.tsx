@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { JavaScriptIcon, NextJsIcon, PostgreesIcon, PrismaIcon, ReactIcon, TailwindIcon, TypeScriptIcon, DockerIcon } from '../icons/technologies-icons';
+import { JavaScriptIcon, NextJsIcon, PostgreesIcon, PrismaIcon, ReactIcon, TailwindIcon, TypeScriptIcon, DockerIcon, NodeJsIcon, ExpressIcon, AxiosIcon } from '../icons/technologies-icons';
 
 interface ProjectTechnologiesProps {
   technologies: string[];
@@ -14,6 +14,9 @@ const technologyIcons: { [key: string]: ReactNode } = {
   'Prisma': <PrismaIcon height={20} width={20} />,
   'PostgreeSQL': <PostgreesIcon height={20} width={20} />,
   'Docker': <DockerIcon height={25} width={25} />,
+  'NodeJs': <NodeJsIcon height={20} width={20} />,
+  'Express': <ExpressIcon height={20} width={20} />,
+  'Axios': <AxiosIcon height={20} width={20} />,
 };
 
 const ProjectTechnologies = ({ technologies }: ProjectTechnologiesProps) => {

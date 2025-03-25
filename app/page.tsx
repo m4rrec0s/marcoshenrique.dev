@@ -22,10 +22,37 @@ import ContactForm from "./_components/contact-form";
 const projects: ProjectItemProps[] = [
   {
     props: {
+      name: "LNA-Doceria",
+      category: "E-commerce",
+      description:
+        "Aplicação Full-Stack para uma doceria, desenvolvida utilizando o framework Next.js no frontend e Node.js com express no backend.",
+      images: [
+        "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xD42E3j1TkldOxniDSwmXAE8QRLK6UrY3q9vs",
+        "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xwNNppNTXqNQY4tdwEMGiag531nCcKDWfZ7Jh",
+        "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xTmREvcYbZCfILMgcJAnwiSRQdT5oF8r0UvPz",
+        "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xCXiaTfPJRODo7leHmSWQaEyNPFiwbk4ns5rp",
+      ],
+      status: "Completed",
+      technologies: [
+        "Next.js",
+        "Tailwind",
+        "NodeJs",
+        "TypeScript",
+        "Axios",
+        "Express",
+        "Prisma",
+        "PostgreeSQL",
+      ],
+      github: "",
+      project: "https://lna-doceria.netlify.app/",
+    },
+  },
+  {
+    props: {
       name: "A²DN FITNESS",
       category: "Presentation website",
       description:
-        "The project is a presentation website for a gym, developed using the Next.js framework.",
+        "O projeto é um site de apresentação para uma academia, desenvolvido utilizando o framework Next.js.",
       images: [
         "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7x6hcEvopN8fuSIwAyMtVlakG9WErLCDYi21Un",
         "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xDSTQB81TkldOxniDSwmXAE8QRLK6UrY3q9vs",
@@ -43,7 +70,7 @@ const projects: ProjectItemProps[] = [
       name: "MH food",
       category: "Food Delivery Application",
       description:
-        "The project is a web application for a food delivery service, developed using the Next.js framework.",
+        "O projeto é uma aplicação web para um serviço de entrega de comida, desenvolvida utilizando o framework Next.js.",
       images: [
         "https://utfs.io/f/93d839e0-1605-4683-b726-f8ac3c2c2c4f-z8uvbx.png",
         "https://utfs.io/f/961f4e66-a786-46db-a04f-9b02985dfb98-zb7k90.png",
@@ -70,7 +97,7 @@ const projects: ProjectItemProps[] = [
       name: "TrackEquip",
       category: "Equipment Tracking Application",
       description:
-        "The project is a web application for tracking equipment. It includes equipment search, viewing equipment details and status of the equipment.",
+        "O projeto é uma aplicação web para rastreamento de equipamentos. Inclui busca de equipamentos, visualização de detalhes e status dos equipamentos.",
       images: [
         "https://utfs.io/f/BhegMacQdV7xNcxa3uiz7tOwskcNBrnaZFPo8AL0fDgSvGpx",
         "https://utfs.io/f/BhegMacQdV7xKZRQVwI6lV3f4Om0EpTCUB1gb5GdviQNrWuI",
@@ -94,7 +121,7 @@ const projects: ProjectItemProps[] = [
       name: "TaskList",
       category: "Training web application",
       description:
-        "The project is a web application developed with Next.js, which is an exercise and workout manager. It includes features for user authentication, exercise search, viewing exercise and workout details, and integration with the Prisma database.",
+        "O projeto é uma aplicação web desenvolvida com Next.js, que é um gerenciador de exercícios e treinos. Inclui recursos para autenticação de usuários, busca de exercícios, visualização de detalhes de exercícios e treinos, e integração com o banco de dados Prisma.",
       images: [
         "https://utfs.io/f/25330adf-d6f9-42b6-bac8-eaae4d1215f7-1ri2lq.png",
         "https://utfs.io/f/d44082a6-67d0-45c0-8952-77cd6922a5cd-1ri2lr.png",
@@ -187,16 +214,18 @@ export default function Home() {
             <div className="flex flex-col items-center w-full">
               <div className="text-center">
                 <h1 className="text-4xl font-semibold">
-                  Hello, Im{" "}
+                  Olá, Eu sou{" "}
                   <strong className="text-primary">Marcos Henrique</strong>
                 </h1>
                 <p className="text-xl font-semibold">
-                  <strong className="text-primary font-normal">Web</strong>{" "}
-                  Developer
+                  Desenvolvedor{" "}
+                  <strong className="text-primary font-normal">
+                    Full-Stack
+                  </strong>
                 </p>
                 <p className="opacity-60 text-lg max-w-[600px] mt-3">
-                  Developer of modern and efficient web applications using
-                  technologies such as Next.js and Node.js.
+                  Desenvolvedor de aplicações web modernas e eficientes usando
+                  tecnologias como Next.js e Node.js.
                 </p>
 
                 <div className="w-full flex justify-center mt-6 items-center z-10 gap-5 max-sm:gap-3">
@@ -209,7 +238,7 @@ export default function Home() {
                   >
                     <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
                     <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background px-3 py-1 text-sm font-medium backdrop-blur-3xl hover:bg-slate-950">
-                      Download CV
+                      Currículo
                     </span>
                   </Link>
 
