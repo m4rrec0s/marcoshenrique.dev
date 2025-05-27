@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "./_components/ui/sonner";
-import { BackgroundLines } from "./_components/ui/background-lines";
+import Header from "./_components/header";
+import { Separator } from "./_components/ui/separator";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -17,10 +18,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className="">
-      <body className={montserrat.className}>
-        <BackgroundLines className="bg-background">{children}</BackgroundLines>
-
+    <html lang="pt-BR">
+      <body className={`${montserrat.className} flex flex-col min-h-screen`}>
+        <Header />
+        <main className="flex-1 flex flex-col justify-center items-center w-full">
+          {children}
+        </main>
+        <Separator className="opacity-50" />
+        <footer className="w-full flex justify-center items-center py-6">
+          <p className="text-xs font-semibold text-center">
+            © {new Date().getFullYear()} Marcos Henrique Araújo. All rights
+            reserved.
+          </p>
+        </footer>
         <Toaster />
       </body>
     </html>

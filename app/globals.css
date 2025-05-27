@@ -4,18 +4,18 @@
 
 @layer base {
   :root {
-    --background: 0 0% 5%;
-    /* #0D0D0D */
-    --foreground: 30 17% 95%;
+    --background: 30 17% 95%;
     /* #F2E7DC */
-    --card: 0 0% 5%;
+    --foreground: 0 0% 5%;
     /* #0D0D0D */
-    --card-foreground: 30 17% 95%;
+    --card: 30 17% 95%;
     /* #F2E7DC */
-    --popover: 0 0% 5%;
+    --card-foreground: 0 0% 5%;
     /* #0D0D0D */
-    --popover-foreground: 30 17% 95%;
+    --popover: 30 17% 95%;
     /* #F2E7DC */
+    --popover-foreground: 0 0% 5%;
+    /* #0D0D0D */
 
     --primary: 174 96% 28%;
     /* #038C7F */
@@ -63,60 +63,72 @@
   }
 
   .dark {
-    --background: 30 17% 95%;
-    /* #F2E7DC */
-    --foreground: 0 0% 5%;
+    --background: 0 0% 5%;
     /* #0D0D0D */
-    --card: 30 17% 95%;
+    --foreground: 30 17% 95%;
     /* #F2E7DC */
-    --card-foreground: 0 0% 5%;
+    --card: 0 0% 5%;
     /* #0D0D0D */
-    --popover: 30 17% 95%;
+    --card-foreground: 30 17% 95%;
     /* #F2E7DC */
-    --popover-foreground: 0 0% 5%;
+    --popover: 0 0% 5%;
     /* #0D0D0D */
+    --popover-foreground: 30 17% 95%;
+    /* #F2E7DC */
 
     --primary: 174 96% 28%;
     /* #038C7F */
     --primary-foreground: 30 17% 95%;
+    /* Mantido, pois geralmente o texto sobre cor primária é claro */
     /* #F2E7DC */
     --secondary: 176 97% 25%;
     /* #027373 */
     --secondary-foreground: 30 17% 95%;
+    /* Mantido, similar ao primário */
     /* #F2E7DC */
 
-    --muted: 0 0% 80%;
-    /* #CCCCCC */
-    --muted-foreground: 0 0% 20%;
+    --muted: 0 0% 20%;
+    /* Invertido com muted-foreground do :root para consistência */
     /* #333333 */
-
-    --accent: 0 0% 80%;
+    --muted-foreground: 0 0% 80%;
+    /* Invertido com muted do :root para consistência */
     /* #CCCCCC */
-    --accent-foreground: 0 0% 20%;
-    /* #333333 */
 
-    --destructive: 0 62.8% 30.6%;
-    /* Vermelho ajustado */
+    --accent: 0 0% 20%;
+    /* Invertido com accent-foreground do :root para consistência */
+    /* #333333 */
+    --accent-foreground: 0 0% 80%;
+    /* Invertido com accent do :root para consistência */
+    /* #CCCCCC */
+
+    --destructive: 0 70% 45%;
+    /* Ajustado para um vermelho mais escuro e menos saturado no tema dark */
+    /* Exemplo: #D32F2F */
     --destructive-foreground: 30 17% 95%;
     /* #F2E7DC */
 
-    --border: 0 0% 80%;
-    /* #CCCCCC */
-    --input: 0 0% 80%;
-    /* #CCCCCC */
-    --ring: 0 0% 20%;
+    --border: 0 0% 20%;
+    /* Mais escuro para o tema dark */
     /* #333333 */
+    --input: 0 0% 20%;
+    /* Mais escuro para o tema dark */
+    /* #333333 */
+    --ring: 0 0% 80%;
+    /* Mais claro para o tema dark para contraste */
+    /* #CCCCCC */
 
-    --chart-1: 0 0% 20%;
-    /* #333333 */
-    --chart-2: 0 0% 40%;
-    /* #666666 */
-    --chart-3: 0 0% 60%;
-    /* #999999 */
-    --chart-4: 0 0% 80%;
+    /* As cores do chart podem precisar de ajuste dependendo do fundo escuro */
+    /* Mantendo por enquanto, mas podem precisar ser mais claras */
+    --chart-1: 0 0% 80%;
     /* #CCCCCC */
-    --chart-5: 0 0% 5%;
-    /* #0D0D0D */
+    --chart-2: 0 0% 60%;
+    /* #999999 */
+    --chart-3: 0 0% 40%;
+    /* #666666 */
+    --chart-4: 0 0% 20%;
+    /* #333333 */
+    --chart-5: 30 17% 95%;
+    /* #F2E7DC */
   }
 }
 
@@ -136,6 +148,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
