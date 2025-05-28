@@ -22,7 +22,6 @@ export default function SkillHighlight({
       transition={{ duration: 0.3 }}
     >
       <div className="relative">
-        {/* Animated gradient background */}
         <motion.div
           className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#038C7F]/30 to-indigo-500/30 blur-lg opacity-75"
           animate={{
@@ -36,18 +35,14 @@ export default function SkillHighlight({
           }}
         />
 
-        {/* Tech highlight card */}
         <div className="relative bg-black/80 backdrop-blur-md p-6 rounded-lg border border-white/10">
           <div className="flex flex-col items-center gap-4">
-            {/* Tech icon */}
-            <div className="text-[#038C7F] text-5xl">
-              <TechnologiesList icon={tech} />
-            </div>
+            {/* <div className="text-[#038C7F] text-5xl">
+              <TechnologiesList names={tech} />
+            </div> */}
 
-            {/* Tech name */}
             <h3 className="text-xl font-semibold">{tech}</h3>
 
-            {/* Progress bar */}
             <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden mt-2">
               <motion.div
                 className="h-full bg-gradient-to-r from-[#038C7F] to-[#A9D9D0]"
@@ -57,13 +52,11 @@ export default function SkillHighlight({
               />
             </div>
 
-            {/* Expertise level */}
             <div className="flex justify-between w-full text-sm text-white/60">
               <span>Experiência</span>
               <span className="font-medium text-white">{expertise}%</span>
             </div>
 
-            {/* Decorative elements */}
             <div className="absolute top-2 right-2">
               <svg
                 width="24"

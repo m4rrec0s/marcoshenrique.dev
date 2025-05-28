@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${montserrat.className} flex flex-col min-h-screen dark relative`}
+        className={`${montserrat.className} flex flex-col min-h-screen relative dark`}
       >
         <AdvancedBackground enableMatrix={true} />
         <Header />

@@ -57,8 +57,8 @@ export default function HomeEntry() {
         >
           Marcos Henrique Araújo é um desenvolvedor full stack com experiência
           em tecnologias como Next.js, React, TypeScript, Node e várias outras
-          stacks. Ele é apaixonado por criar soluções inovadoras e eficientes,
-          sempre buscando aprender e se aprimorar.
+          stacks. Ele é apaixonado por tecnologia, inovação e a satisfação do
+          usuário, sempre buscando aprender e se aprimorar.
         </motion.p>
 
         <motion.div
