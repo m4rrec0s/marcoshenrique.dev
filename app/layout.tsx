@@ -19,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${montserrat.className} flex flex-col min-h-screen`}>
+      <body
+        className={`${montserrat.className} flex flex-col min-h-screen dark`}
+      >
         <Header />
         <main className="flex-1 flex flex-col justify-center items-center w-full">
           {children}

@@ -1,101 +1,124 @@
 import Link from "next/link";
 import { Badge } from "./ui/badge";
 import Image from "next/image";
-import { EyeIcon, GithubIcon } from "lucide-react";
+import { ArrowUpRight, EyeIcon, GithubIcon } from "lucide-react";
+import { motion } from "framer-motion";
 
 import ProjectTechnologies from "./technologies";
-
-type ProjectStatus = "In Progress" | "Completed";
-type ProjectTechnologies = React.ReactNode[];
+import { Project } from "../_data";
 
 export interface ProjectItemProps {
-  props: {
-    name: string;
-    category: string;
-    description: string;
-    images: string[];
-    status: ProjectStatus;
-    technologies: string[];
-    github: string;
-    project: string;
-  };
+  project: Project;
 }
 
-export default function ProjectItem({ props }: ProjectItemProps) {
+export default function ProjectItem({ project }: ProjectItemProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 md:max-w-[90%]">
-      <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
-        {props.images.map((image, index) => (
+    <motion.div
+      className="bg-black/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300"
+      whileHover={{
+        y: -8,
+        boxShadow: "0 10px 30px -15px rgba(255, 255, 255, 0.2)",
+      }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Link href={`/projects/${project.slug}`} className="block">
+        <div className="relative overflow-hidden aspect-video">
           <Image
-            key={index}
             src={
-              image ||
+              project.images[0] ||
               "https://utfs.io/f/8b675edc-f21a-4e20-a69b-48fbd5f93195-9pcde4.png"
             }
-            alt="Project Thumbnail"
-            width={250}
-            height={250}
-            quality={100}
-            className={`w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105 rounded-lg aspect-square ${index > 0 ? 'max-sm:hidden' : ''
-              }`}
+            alt={`${project.name} Thumbnail`}
+            width={600}
+            height={400}
+            quality={90}
+            className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105"
           />
-        ))}
-      </div>
-      <div className="flex flex-col justify-center gap-6">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <div className="absolute top-3 right-3">
+            <Badge
+              className={
+                project.status === "Completed"
+                  ? "bg-green-900/70 text-green-300 hover:bg-green-800"
+                  : "bg-yellow-800/70 text-yellow-300 hover:bg-yellow-700"
+              }
+            >
+              {project.status}
+            </Badge>
+          </div>
+        </div>
+
+        <div className="p-6 flex flex-col gap-4">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-sm text-gray-400 mb-1">{project.category}</p>
+              <h2
+                className="text-xl font-bold text-white group-hover:text-primary transition-colors"
+                translate="no"
+              >
+                {project.name}
+              </h2>
+            </div>
+            <motion.div
+              className="bg-white/10 p-2 rounded-full"
+              whileHover={{ rotate: 45 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ArrowUpRight className="text-white" size={16} />
+            </motion.div>
+          </div>
+
+          <div className="prose max-w-none">
+            <p className="text-gray-300 text-sm line-clamp-3">
+              {project.description}
+            </p>
+          </div>
+
           <div>
-            <h2 className="text-2xl font-bold text-white" translate="no">{props.name}</h2>
-            <div className="flex gap-2">
-              <span className="text-gray-400">{props.category}</span>
+            <h3 className="text-xs font-semibold mb-2 text-gray-400">
+              Tecnologias
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.slice(0, 4).map((technology, index) => (
+                <ProjectTechnologies key={index} technologies={[technology]} />
+              ))}
+              {project.technologies.length > 4 && (
+                <Badge className="bg-white/10 text-gray-300 hover:bg-white/20">
+                  +{project.technologies.length - 4}
+                </Badge>
+              )}
             </div>
           </div>
-        </div>
-        <div className="prose max-w-none">
-          <p className="opacity-70">{props.description}</p>
-        </div>
-        <div>
-          <h3 className="text-sm font-semibold mb-3">Project Status</h3>
-          {props.status === "Completed" ? (
-            <Badge className="w-fit bg-green-900 text-green-300 hover:bg-green-800">
-              Completed
-            </Badge>
-          ) : (
-            <Badge className="w-fit bg-yellow-800 text-yellow-300 hover:bg-yellow-700">
-              In Progress
-            </Badge>
-          )}
-        </div>
-        <div>
-          <h3 className="text-sm font-semibold mb-3">Used Technologies</h3>
-          <div className="flex flex-wrap gap-4">
-            {props.technologies.map((tecnology, index) => (
-              <ProjectTechnologies key={index} technologies={[tecnology]} />
-            ))}
+
+          <div className="flex gap-3 mt-2">
+            {project.github && (
+              <Link
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-1 items-center text-xs text-gray-400 hover:text-white transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <GithubIcon width={16} height={16} />
+                <span>GitHub</span>
+              </Link>
+            )}
+            {project.project && (
+              <Link
+                href={project.project}
+                className="flex gap-1 items-center text-xs text-gray-400 hover:text-white transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <EyeIcon width={16} height={16} />
+                <span>Live Demo</span>
+              </Link>
+            )}
           </div>
         </div>
-        <div className="flex gap-4">
-          <Link
-            href={props.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex gap-1 border border-white p-3 rounded-md hover:bg-white hover:text-black transition-colors"
-          >
-            <GithubIcon width={20} height={20} />
-            <p className="text-sm font-extralight">GitHub</p>
-          </Link>
-          {props.project != "" && (
-            <Link
-              href={props.project}
-              className="flex gap-1 border border-white p-3 rounded-md hover:bg-white hover:text-black transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <EyeIcon width={20} height={20} />
-              <p className="text-sm font-extralight">View Project</p>
-            </Link>
-          )}
-        </div>
-      </div>
-    </div>
+      </Link>
+    </motion.div>
   );
 }

@@ -1,145 +1,82 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
-import {
-  HomeIcon,
-  PresentationIcon,
-  PhoneIcon,
-  BrainIcon,
-  MenuIcon,
-} from "lucide-react";
-import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const links = useMemo(
     () => [
-      { id: "home", name: "Início" },
-      { id: "projects", name: "Projetos" },
-      { id: "skills", name: "Habilidades" },
-      { id: "contact", name: "Contato" },
+      { url: "/", name: "Início" },
+      { url: "/about", name: "Eu" },
+      { url: "/projects", name: "Projetos" },
+      { url: "/skills", name: "Habilidades" },
+      { url: "/contact", name: "Contato" },
     ],
     []
   );
 
-  const [selected, setSelected] = useState(links[0].id);
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const pathname = usePathname();
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const activeLink = useMemo(() => {
+    if (pathname === "/") {
+      return "/";
     }
-  };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      links.forEach((link) => {
-        const section = document.getElementById(link.id);
-        if (section) {
-          const rect = section.getBoundingClientRect();
-          if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
-            setSelected(link.id);
-          }
-        }
-      });
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [links]);
+    const matchingLink = links
+      .filter((link) => link.url !== "/")
+      .find((link) => pathname.startsWith(link.url));
+
+    return matchingLink?.url || "/";
+  }, [pathname, links]);
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
-      className="w-full flex justify-center px-2 py-4 bg-white/10 rounded-full backdrop-blur-sm shadow-md max-md:px-10 max-md:py-6 max-md:rounded-none max-md:shadow-none max-md:w-screen max-md:bg-black/10 max-md:border-b border-white/10"
+      className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center px-4 py-2 bg-black shadow-md max-md:px-6 max-md:py-3 max-md:border-b max-md:border-gray-700"
     >
-      <div className="flex items-center h-full w-full max-md:justify-end">
-        <nav className="max-sm:hidden">
+      <div className="flex items-center h-full w-full max-w-screen-lg justify-between md:justify-center">
+        <nav className="w-full flex justify-center">
           <motion.ul
-            id="underline"
-            className="flex items-center space-x-5 relative"
+            id="desktop-nav-links"
+            className="flex items-center space-x-2 relative"
           >
-            {links.map((link) => (
-              <motion.li key={link.id} className="relative">
-                <Link
-                  href={`#${link.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.id);
-                  }}
-                  className={`text-sm font-bold relative px-5 py-3 rounded-full z-10 ${
-                    selected === link.id ? "text-white" : "text-gray-400"
-                  }`}
-                >
-                  {link.name}
-                  {/* {selected === link.id && (
-                    <motion.span
-                      layoutId="pill-tab"
-                      className="absolute w-full inset-0 bg-black/60 rounded-full z-0"
-                      transition={{ type: "spring", duration: 0.5 }}
-                    />
-                  )} */}
-                </Link>
-              </motion.li>
-            ))}
+            {links.map((link) => {
+              const isActive = link.url === activeLink;
+              return (
+                <motion.li key={link.url} className="relative">
+                  <Link
+                    href={link.url}
+                    className={`text-sm font-medium relative px-3 py-2 rounded-md z-10 transition-colors duration-300 ${
+                      isActive
+                        ? "text-white"
+                        : "text-gray-400 hover:text-gray-200"
+                    }`}
+                  >
+                    {link.name}
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-link-underline"
+                        className="absolute bottom-[-2px] left-0 right-0 h-0.5 bg-white rounded-full"
+                        initial={{ opacity: 0, width: 0 }}
+                        animate={{ opacity: 1, width: "100%" }}
+                        exit={{ opacity: 0, width: 0 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                  </Link>
+                </motion.li>
+              );
+            })}
           </motion.ul>
         </nav>
-        <div className="sm:hidden flex gap-3 items-center">
-          <Link
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("contact");
-            }}
-            className="hover:text-primary transition-colors"
-          >
-            Contact
-          </Link>
-
-          <Button
-            variant="ghost"
-            className="hover:bg-transparent"
-            onClick={() => setIsSheetOpen(true)}
-          >
-            <MenuIcon size={20} />
-          </Button>
-
-          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle className="text-left font-bold">Menu</SheetTitle>
-              </SheetHeader>
-              <motion.ul className="mt-12 flex flex-col gap-6">
-                {links.map((link) => (
-                  <motion.li
-                    key={link.id}
-                    className="hover:bg-muted-foreground rounded-lg"
-                  >
-                    <Link
-                      href={`#${link.id}`}
-                      onClick={(e) => {
-                        setIsSheetOpen(false);
-                        e.preventDefault();
-                        scrollToSection(link.id);
-                      }}
-                      className="w-full px-3 py-3 text-sm flex gap-2"
-                    >
-                      {link.id === "home" && <HomeIcon size={20} />}
-                      {link.id === "projects" && <PresentationIcon size={20} />}
-                      {link.id === "skills" && <BrainIcon size={20} />}
-                      {link.id === "contact" && <PhoneIcon size={20} />}
-                      {link.name}
-                    </Link>
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </SheetContent>
-          </Sheet>
-        </div>
       </div>
     </motion.header>
   );

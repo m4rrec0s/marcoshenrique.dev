@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function HomeEntry() {
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-2 gap-8 p-2 sm:p-8">
+    <section className="grid grid-cols-1 sm:grid-cols-2 gap-8 p-2 sm:p-8 max-sm:py-[100px]">
       <motion.div
         className="flex flex-col justify-center items-start"
         initial={{ opacity: 0, y: 20 }}
@@ -15,7 +15,7 @@ export default function HomeEntry() {
       >
         <h1 className="text-4xl font-bold">Marcos Araújo</h1>
         <h2 className="text-lg">Desenvolvedor Full Stack</h2>
-        <p className="mt-4 text-gray-700 max-w-sm">
+        <p className="mt-4 text-gray-700 dark:text-gray-300 max-w-sm">
           Marcos Henrique Araújo é um desenvolvedor full stack com experiência
           em tecnologias como Next.js, React, TypeScript, Node e várias outras
           stacks. Ele é apaixonado por criar soluções inovadoras e eficientes,
