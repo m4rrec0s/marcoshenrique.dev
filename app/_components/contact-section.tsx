@@ -5,7 +5,7 @@ import ContactForm from "./contact-form";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-20 w-full">
+    <section id="contact" className="py-20 w-full overflow-x-hidden">
       <div className="w-full flex justify-center">
         <Title
           span="Vamos trabalhar juntos"

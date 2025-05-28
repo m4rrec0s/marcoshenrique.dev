@@ -1,33 +1,17 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Title from "./title";
 import TechnologiesList from "./technologies-list";
-import { motion } from "framer-motion";
 
 const technologiesCategories = {
-  "Frameworks Frontend": ["React", "Next.js", "Vue", "Nuxt", "Angular"],
-  "Mobile & Desenvolvimento Cross-Platform": ["React Native", "Expo"],
-  "Linguagens de Programação": [
-    "TypeScript",
-    "JavaScript",
-    "Python",
-    "Java",
-    "PHP",
-  ],
-  "Backend & Frameworks": ["Django", "Spring Boot", "Laravel", "Express"],
-  "Banco de Dados & ORM": ["Prisma", "PostgreSQL", "MySQL"],
-  "DevOps & Ferramentas": ["Docker", "Git", "GitHub", "REST API"],
-  "UI/UX & Estilização": [
-    "Tailwind",
-    "SASS",
-    "CSS",
-    "HTML",
-    "Bootstrap",
-    "Framer Motion",
-    "Styled Components",
-    "Material UI",
-  ],
-  Testes: ["Jest", "Testing Library"],
+  Frontend: ["React", "Next.js", "Vue", "Angular"],
+  Mobile: ["React Native", "Expo"],
+  Linguagens: ["TypeScript", "JavaScript", "Python", "Java", "PHP"],
+  Backend: ["Node.js", "Django", "Spring Boot", "Laravel", "Express"],
+  "Banco de Dados": ["PostgreSQL", "MySQL", "MongoDB"],
+  DevOps: ["Docker", "Git", "GitHub"],
+  "UI/UX": ["Tailwind", "CSS", "HTML", "Framer Motion"],
 };
 
 const allTechnologies = [
@@ -38,37 +22,58 @@ const allTechnologies = [
   "TypeScript",
   "JavaScript",
   "Python",
+  "Node.js",
   "Django",
-  "Nuxt",
   "Vue",
   "Angular",
   "Java",
   "Spring Boot",
   "PHP",
   "Laravel",
-  "Prisma",
   "PostgreSQL",
   "MySQL",
+  "MongoDB",
   "Docker",
   "HTML",
   "CSS",
-  "SASS",
   "Tailwind",
-  "Bootstrap",
   "Framer Motion",
-  "Styled Components",
-  "Material UI",
   "Git",
   "GitHub",
-  "REST API",
-  "Jest",
-  "Testing Library",
+  "Express",
 ];
 
 export default function SkillsSection() {
   return (
     <section id="skills" className="py-20 w-full relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-purple-500/5 to-transparent -z-10 opacity-40 w-full"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-purple-500/5 to-transparent -z-10 opacity-40"></div>
+
+      <motion.div
+        className="absolute top-10 left-10 w-20 h-20 border border-[#038C7F]/20 rounded-full -z-5"
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.2, 0.4, 0.2],
+          rotate: [0, 90, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
+
+      <motion.div
+        className="absolute top-1/2 right-10 w-3 h-20 bg-gradient-to-b from-[#038C7F]/10 to-transparent -z-5"
+        animate={{
+          height: [80, 120, 80],
+          opacity: [0.2, 0.5, 0.2],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
 
       <motion.div
         className="w-full flex justify-center mb-10"
@@ -83,11 +88,18 @@ export default function SkillsSection() {
         />
       </motion.div>
 
-      <div className="container mx-auto">
-        <TechnologiesList
-          names={allTechnologies}
-          categories={technologiesCategories}
-        />
+      <div className="container mx-auto px-4">
+        <motion.div
+          className="bg-black/20 backdrop-blur-sm rounded-xl p-6 border border-white/10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          <TechnologiesList
+            names={allTechnologies}
+            categories={technologiesCategories}
+          />
+        </motion.div>
       </div>
     </section>
   );
