@@ -15,11 +15,11 @@ const nextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'https',
-        hostname: 'another-example.com',
+        protocol: 'http',
+        hostname: '6c8fb3gvzm.ufs.sh',
         port: '',
         pathname: '/**',
-      },
+      }
     ],
   },
 };

@@ -5,6 +5,7 @@
     "category": "E-commerce",
     "description": "Aplicação Full-Stack para uma doceria, desenvolvida utilizando o framework Next.js no frontend e Node.js com express no backend.",
     "images": [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7x0LsbZUQRmWT6HUGOv8iP0NnVLKt7oMhrDEYq",
       "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xD42E3j1TkldOxniDSwmXAE8QRLK6UrY3q9vs",
       "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xwNNppNTXqNQY4tdwEMGiag531nCcKDWfZ7Jh",
       "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xTmREvcYbZCfILMgcJAnwiSRQdT5oF8r0UvPz",
@@ -25,11 +26,37 @@
     "project": "https://lna-doceria.netlify.app/"
   },
   {
+    "name": "Rise Worship",
+    "slug": "rise-worship",
+    "category": "Music Management Application",
+    "description": "O Rise Worship é uma plataforma web desenvolvida em Next.js com TypeScript que foi criada especialmente para equipes de louvor e músicos cristãos. A aplicação permite organizar e gerenciar repertórios musicais de forma colaborativa, facilitando a preparação de cultos e eventos religiosos através de um sistema de grupos, músicas e setlists.",
+    "status": "Completed",
+    "images": [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xZqBNQ4riV7fu156c9tSmEYwIngrzsC2R4dep",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7x4OMEschBeWJLw7qAUs3VtycdgD2Yrx8z6QpZ",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xqj8ufTtElWARUSNvYg1L5MnFwdp7cC3Xqa0B",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xJqgHYGwKkcPR2sETG0gZ5vIaBb8QpyHNt7Yd",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xbDkLMu4TzROdC1Yt8s3emSxBUu6FaGi0JnrI"
+    ],
+    "technologies": [
+      "Next.js",
+      "NodeJs",
+      "Express",
+      "Axios",
+      "TypeScript",
+      "Tailwind",
+      "Prisma"
+    ],
+    "github": "https://github.com/m4rrec0s/rise-worship-frontend",
+    "project": "https://riseworship.netlify.app/"
+  },
+  {
     "name": "A²DN FITNESS",
     "slug": "aadn-fitness",
     "category": "Presentation website",
     "description": "O projeto é um site de apresentação para uma academia, desenvolvido utilizando o framework Next.js.",
     "images": [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xmFLPaSUM5KxGBZ9knzPeApvS23lbcCNWquIt",
       "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7x6hcEvopN8fuSIwAyMtVlakG9WErLCDYi21Un",
       "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xDSTQB81TkldOxniDSwmXAE8QRLK6UrY3q9vs",
       "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xQhXGhndtpv3VXyNPswOukqdW8jrzxclI5fMZ",
@@ -46,6 +73,7 @@
     "category": "Food Delivery Application",
     "description": "O projeto é uma aplicação web para um serviço de entrega de comida, desenvolvida utilizando o framework Next.js.",
     "images": [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xJACzI3wKkcPR2sETG0gZ5vIaBb8QpyHNt7Yd",
       "https://utfs.io/f/93d839e0-1605-4683-b726-f8ac3c2c2c4f-z8uvbx.png",
       "https://utfs.io/f/961f4e66-a786-46db-a04f-9b02985dfb98-zb7k90.png",
       "https://utfs.io/f/16fab9bd-c6dc-4900-ae5b-cdb592dffe39-yu5xut.png",
@@ -71,6 +99,7 @@
     "category": "Equipment Tracking Application",
     "description": "O projeto é uma aplicação web para rastreamento de equipamentos. Inclui busca de equipamentos, visualização de detalhes e status dos equipamentos.",
     "images": [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7x1JwkYRjIw03HKRYZmt27uqeOSX6cE5WylbMV",
       "https://utfs.io/f/BhegMacQdV7xNcxa3uiz7tOwskcNBrnaZFPo8AL0fDgSvGpx",
       "https://utfs.io/f/BhegMacQdV7xKZRQVwI6lV3f4Om0EpTCUB1gb5GdviQNrWuI",
       "https://utfs.io/f/BhegMacQdV7xBtt7dgcQdV7xfrowZajygGJIS9ilU238kNcH",
@@ -93,6 +122,7 @@
     "category": "Training web application",
     "description": "O projeto é uma aplicação web desenvolvida com Next.js, que é um gerenciador de exercícios e treinos. Inclui recursos para autenticação de usuários, busca de exercícios, visualização de detalhes de exercícios e treinos, e integração com o banco de dados Prisma.",
     "images": [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xNqCWSbiz7tOwskcNBrnaZFPo8AL0fDgSvGpx",
       "https://utfs.io/f/25330adf-d6f9-42b6-bac8-eaae4d1215f7-1ri2lq.png",
       "https://utfs.io/f/d44082a6-67d0-45c0-8952-77cd6922a5cd-1ri2lr.png",
       "https://utfs.io/f/e69b67b2-fbd6-487a-a57a-9f0f414e8fbf-1ri2ls.png",

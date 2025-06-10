@@ -16,7 +16,7 @@ export default function ProjectItem({ project }: ProjectItemProps) {
     <motion.div
       className="bg-black/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300"
       whileHover={{
-        y: -8,
+        y: -5,
         boxShadow: "0 10px 30px -15px rgba(255, 255, 255, 0.2)",
       }}
       initial={{ opacity: 0, y: 20 }}
@@ -36,7 +36,7 @@ export default function ProjectItem({ project }: ProjectItemProps) {
             quality={90}
             className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105"
           />
-          <div className="absolute top-3 right-3">
+          <div className="absolute top-3 left-3">
             <Badge
               className={
                 project.status === "Completed"
