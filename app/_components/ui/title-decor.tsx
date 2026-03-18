@@ -16,25 +16,25 @@ export default function TitleDecor({
     <div className={`relative inline-block ${className}`}>
       {/* Decorative elements */}
       <motion.span
-        className="absolute -top-2 -left-3 w-1.5 h-1.5 rounded-full bg-[#038C7F]"
+        className="absolute -top-2 -left-3 w-1.5 h-1.5 rounded-full bg-[#737373]"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.4, delay: 0.2 }}
       />
       <motion.span
-        className="absolute -bottom-2 -right-3 w-1.5 h-1.5 rounded-full bg-[#A9D9D0]"
+        className="absolute -bottom-2 -right-3 w-1.5 h-1.5 rounded-full bg-[#B3B3B3]"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.4, delay: 0.4 }}
       />
       <motion.span
-        className="absolute top-1/2 -translate-y-1/2 -left-6 w-4 h-px bg-gradient-to-r from-[#038C7F] to-transparent"
+        className="absolute top-1/2 -translate-y-1/2 -left-6 w-4 h-px bg-gradient-to-r from-[#737373] to-transparent"
         initial={{ width: 0, opacity: 0 }}
         animate={{ width: "16px", opacity: 0.7 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       />
       <motion.span
-        className="absolute top-1/2 -translate-y-1/2 -right-6 w-4 h-px bg-gradient-to-l from-[#A9D9D0] to-transparent"
+        className="absolute top-1/2 -translate-y-1/2 -right-6 w-4 h-px bg-gradient-to-l from-[#B3B3B3] to-transparent"
         initial={{ width: 0, opacity: 0 }}
         animate={{ width: "16px", opacity: 0.7 }}
         transition={{ duration: 0.5, delay: 0.3 }}

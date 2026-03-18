@@ -26,19 +26,19 @@ const ContactForm = () => {
       name: "LinkedIn",
       icon: Linkedin,
       url: "https://linkedin.com/in/marcos-henrique-araujo",
-      color: "hover:text-blue-400",
+      color: "hover:text-gray-300",
     },
     {
       name: "Instagram",
       icon: Instagram,
       url: "https://instagram.com/marcos_henrique_eu",
-      color: "hover:text-pink-400",
+      color: "hover:text-gray-300",
     },
     {
       name: "Email",
       icon: Mail,
       url: "mailto:riquecrft@gmail.com",
-      color: "hover:text-green-400",
+      color: "hover:text-gray-300",
     },
   ];
 
@@ -57,7 +57,7 @@ const ContactForm = () => {
         "service_9imxb9n",
         "template_xzh95cr",
         templateParams,
-        "SwASm4lOIMWCS8BU-"
+        "SwASm4lOIMWCS8BU-",
       );
 
       toast.success("Mensagem enviada com sucesso!");
@@ -106,7 +106,7 @@ const ContactForm = () => {
           </div>
 
           {/* Informações de contato direto */}
-          <div className="p-4 rounded-lg bg-gradient-to-r from-[#038C7F]/10 to-indigo-500/10 border border-white/10">
+          <div className="p-4 rounded-lg bg-gradient-to-r from-white/10 to-white/5 border border-white/10">
             <p className="text-sm text-gray-300">
               <Mail className="inline h-4 w-4 mr-2" />
               Resposta em até 24 horas
@@ -131,7 +131,7 @@ const ContactForm = () => {
                     <Input
                       type="text"
                       id="name"
-                      className="bg-black/30 border-white/20 text-white placeholder:text-gray-400 focus:border-[#038C7F] focus:ring-[#038C7F]/20 transition-all duration-300"
+                      className="bg-black/30 border-white/20 text-white placeholder:text-gray-400 focus:border-gray-400 focus:ring-gray-400/20 transition-all duration-300"
                       placeholder="Seu nome completo"
                       onChange={(e) => setName(e.target.value)}
                       value={name}
@@ -146,7 +146,7 @@ const ContactForm = () => {
                     <Input
                       type="email"
                       id="email"
-                      className="bg-black/30 border-white/20 text-white placeholder:text-gray-400 focus:border-[#038C7F] focus:ring-[#038C7F]/20 transition-all duration-300"
+                      className="bg-black/30 border-white/20 text-white placeholder:text-gray-400 focus:border-gray-400 focus:ring-gray-400/20 transition-all duration-300"
                       placeholder="seu@email.com"
                       onChange={(e) => setEmail(e.target.value)}
                       value={email}
@@ -162,7 +162,7 @@ const ContactForm = () => {
                   </Label>
                   <Textarea
                     id="message"
-                    className="bg-black/30 border-white/20 text-white placeholder:text-gray-400 focus:border-[#038C7F] focus:ring-[#038C7F]/20 transition-all duration-300 min-h-[120px] resize-none"
+                    className="bg-black/30 border-white/20 text-white placeholder:text-gray-400 focus:border-gray-400 focus:ring-gray-400/20 transition-all duration-300 min-h-[120px] resize-none"
                     placeholder="Olá! Gostaria de conversar sobre..."
                     onChange={(e) => setMessage(e.target.value)}
                     value={message}
@@ -178,7 +178,7 @@ const ContactForm = () => {
                 >
                   <Button
                     type="submit"
-                    className="bg-gradient-to-r from-[#038C7F] to-[#A9D9D0] hover:from-[#027366] hover:to-[#98CCC5] text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                    className="bg-gradient-to-r from-white to-gray-300 hover:from-gray-300 hover:to-gray-200 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                     disabled={isLoading}
                   >
                     {isLoading ? (

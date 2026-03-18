@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "./_components/ui/sonner";
-import Header from "./_components/header";
 import { Separator } from "./_components/ui/separator";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -19,10 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body
-        className={`${montserrat.className} flex flex-col min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800`}
-      >
-        <Header />
+      <body className={`${montserrat.className} dark bg-black`}>
         <main className="flex-1 flex flex-col justify-center items-center w-full">
           {children}
         </main>

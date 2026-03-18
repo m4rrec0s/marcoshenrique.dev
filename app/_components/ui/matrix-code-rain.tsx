@@ -12,7 +12,7 @@ interface MatrixCodeRainProps {
 }
 
 export default function MatrixCodeRain({
-  color = "#038C7F",
+  color = "#737373",
   fontSize = 12,
   opacity = 0.8,
   speed = 50,

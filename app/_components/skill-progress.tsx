@@ -5,12 +5,10 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 interface SkillProgressProps {
-  name: string;
-  percentage: number;
-  delay?: number;
+  slill: { name: string; percentage: number; delay?: number };
 }
 
-const SkillProgress = ({ name, percentage, delay = 0 }: SkillProgressProps) => {
+const SkillProgress = ({ slill }: SkillProgressProps) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -32,14 +30,20 @@ const SkillProgress = ({ name, percentage, delay = 0 }: SkillProgressProps) => {
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.5, delay },
+          transition: {
+            duration: 0.5,
+            delay: slill.delay || 0 * 0.2,
+            ease: "easeInOut",
+          },
         },
       }}
-      className="mb-6"
+      className="mb-6 w-full max-w-md"
     >
       <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium text-white">{name}</span>
-        <span className="text-xs font-medium text-gray-400">{percentage}%</span>
+        <span className="text-sm font-medium text-white">{slill.name}</span>
+        <span className="text-xs font-medium text-gray-400">
+          {slill.percentage}%
+        </span>
       </div>
       <div className="w-full bg-white/10 rounded-full h-2.5 overflow-hidden">
         <motion.div
@@ -47,15 +51,15 @@ const SkillProgress = ({ name, percentage, delay = 0 }: SkillProgressProps) => {
           animate={controls}
           variants={{
             visible: {
-              width: `${percentage}%`,
+              width: `${slill.percentage}%`,
               transition: {
                 duration: 1,
-                delay: delay + 0.3,
+                delay: slill.delay || 0 + 0.3,
                 ease: "easeInOut",
               },
             },
           }}
-          className="h-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
+          className="h-full rounded-full bg-gradient-to-r from-white to-gray-400"
         ></motion.div>
       </div>
     </motion.div>

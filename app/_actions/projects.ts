@@ -1,16 +1,75 @@
-'use server';
+"use server";
 
-import { getDatabase, initializeDatabase } from '@/app/_lib/db';
-import { seedDatabase } from '@/app/_lib/seed';
+import { getDatabase, initializeDatabase } from "@/app/_lib/db";
+import { seedDatabase } from "@/app/_lib/seed";
 
 const VALID_API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
+export type ProjectStatus = "Completed" | "In Progress";
+
+export interface Project {
+  id: number;
+  name: string;
+  slug: string;
+  category: string;
+  description: string;
+  images: string[];
+  status: ProjectStatus;
+  technologies: string[];
+  github: string | null;
+  project: string | null;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface ProjectInput {
+  name: string;
+  slug: string;
+  category: string;
+  description: string;
+  images: string[];
+  status: ProjectStatus;
+  technologies: string[];
+  github?: string;
+  project?: string;
+}
+
 function validateApiKey(key?: string): boolean {
   if (!VALID_API_KEY) {
-    console.error('API_KEY not configured in environment');
+    console.error("API_KEY not configured in environment");
     return false;
   }
   return key === VALID_API_KEY;
+}
+
+function parseJsonArray(value: string | null | undefined): string[] {
+  if (!value) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed.filter(Boolean) : [];
+  } catch {
+    return [];
+  }
+}
+
+function mapProjectRow(row: any): Project {
+  return {
+    id: Number(row.id),
+    name: row.name,
+    slug: row.slug,
+    category: row.category,
+    description: row.description,
+    images: parseJsonArray(row.images),
+    status: row.status === "Completed" ? "Completed" : "In Progress",
+    technologies: parseJsonArray(row.technologies),
+    github: row.github || null,
+    project: row.project || null,
+    created_at: row.created_at,
+    updated_at: row.updated_at,
+  };
 }
 
 export async function getProjects(apiKey?: string) {
@@ -19,19 +78,17 @@ export async function getProjects(apiKey?: string) {
     seedDatabase();
 
     const db = getDatabase();
-    const projects = db.prepare('SELECT * FROM projects ORDER BY created_at DESC').all();
+    const projects = db
+      .prepare("SELECT * FROM projects ORDER BY created_at DESC")
+      .all();
 
     return {
       success: true,
-      data: projects.map((p: any) => ({
-        ...p,
-        images: JSON.parse(p.images),
-        technologies: JSON.parse(p.technologies),
-      })),
+      data: projects.map(mapProjectRow),
     };
   } catch (error) {
-    console.error('Error fetching projects:', error);
-    return { success: false, error: 'Failed to fetch projects' };
+    console.error("Error fetching projects:", error);
+    return { success: false, error: "Failed to fetch projects" };
   }
 }
 
@@ -41,42 +98,27 @@ export async function getProjectBySlug(slug: string) {
     seedDatabase();
 
     const db = getDatabase();
-    const project = db.prepare('SELECT * FROM projects WHERE slug = ?').get(slug);
+    const project = db
+      .prepare("SELECT * FROM projects WHERE slug = ?")
+      .get(slug);
 
     if (!project) {
-      return { success: false, error: 'Project not found' };
+      return { success: false, error: "Project not found" };
     }
 
     return {
       success: true,
-      data: {
-        ...project,
-        images: JSON.parse((project as any).images),
-        technologies: JSON.parse((project as any).technologies),
-      },
+      data: mapProjectRow(project),
     };
   } catch (error) {
-    console.error('Error fetching project:', error);
-    return { success: false, error: 'Failed to fetch project' };
+    console.error("Error fetching project:", error);
+    return { success: false, error: "Failed to fetch project" };
   }
 }
 
-export async function createProject(
-  data: {
-    name: string;
-    slug: string;
-    category: string;
-    description: string;
-    images: string[];
-    status: string;
-    technologies: string[];
-    github?: string;
-    project?: string;
-  },
-  apiKey?: string
-) {
+export async function createProject(data: ProjectInput, apiKey?: string) {
   if (!validateApiKey(apiKey)) {
-    return { success: false, error: 'Unauthorized' };
+    return { success: false, error: "Unauthorized" };
   }
 
   try {
@@ -97,7 +139,7 @@ export async function createProject(
       data.status,
       JSON.stringify(data.technologies),
       data.github || null,
-      data.project || null
+      data.project || null,
     );
 
     return {
@@ -105,28 +147,21 @@ export async function createProject(
       data: { id: result.lastInsertRowid },
     };
   } catch (error: any) {
-    console.error('Error creating project:', error);
-    return { success: false, error: error.message || 'Failed to create project' };
+    console.error("Error creating project:", error);
+    return {
+      success: false,
+      error: error.message || "Failed to create project",
+    };
   }
 }
 
 export async function updateProject(
   id: number,
-  data: {
-    name?: string;
-    slug?: string;
-    category?: string;
-    description?: string;
-    images?: string[];
-    status?: string;
-    technologies?: string[];
-    github?: string;
-    project?: string;
-  },
-  apiKey?: string
+  data: Partial<ProjectInput>,
+  apiKey?: string,
 ) {
   if (!validateApiKey(apiKey)) {
-    return { success: false, error: 'Unauthorized' };
+    return { success: false, error: "Unauthorized" };
   }
 
   try {
@@ -137,70 +172,76 @@ export async function updateProject(
     const values: any[] = [];
 
     if (data.name !== undefined) {
-      updates.push('name = ?');
+      updates.push("name = ?");
       values.push(data.name);
     }
     if (data.slug !== undefined) {
-      updates.push('slug = ?');
+      updates.push("slug = ?");
       values.push(data.slug);
     }
     if (data.category !== undefined) {
-      updates.push('category = ?');
+      updates.push("category = ?");
       values.push(data.category);
     }
     if (data.description !== undefined) {
-      updates.push('description = ?');
+      updates.push("description = ?");
       values.push(data.description);
     }
     if (data.images !== undefined) {
-      updates.push('images = ?');
+      updates.push("images = ?");
       values.push(JSON.stringify(data.images));
     }
     if (data.status !== undefined) {
-      updates.push('status = ?');
+      updates.push("status = ?");
       values.push(data.status);
     }
     if (data.technologies !== undefined) {
-      updates.push('technologies = ?');
+      updates.push("technologies = ?");
       values.push(JSON.stringify(data.technologies));
     }
     if (data.github !== undefined) {
-      updates.push('github = ?');
+      updates.push("github = ?");
       values.push(data.github || null);
     }
     if (data.project !== undefined) {
-      updates.push('project = ?');
+      updates.push("project = ?");
       values.push(data.project || null);
     }
 
-    updates.push('updated_at = CURRENT_TIMESTAMP');
+    updates.push("updated_at = CURRENT_TIMESTAMP");
     values.push(id);
 
-    const query = `UPDATE projects SET ${updates.join(', ')} WHERE id = ?`;
+    const query = `UPDATE projects SET ${updates.join(", ")} WHERE id = ?`;
     const stmt = db.prepare(query);
     stmt.run(...values);
 
     return { success: true };
   } catch (error: any) {
-    console.error('Error updating project:', error);
-    return { success: false, error: error.message || 'Failed to update project' };
+    console.error("Error updating project:", error);
+    return {
+      success: false,
+      error: error.message || "Failed to update project",
+    };
   }
 }
 
 export async function deleteProject(id: number, apiKey?: string) {
   if (!validateApiKey(apiKey)) {
-    return { success: false, error: 'Unauthorized' };
+    return { success: false, error: "Unauthorized" };
   }
 
   try {
     initializeDatabase();
     const db = getDatabase();
 
-    db.prepare('DELETE FROM projects WHERE id = ?').run(id);
+    db.prepare("DELETE FROM projects WHERE id = ?").run(id);
 
     return { success: true };
   } catch (error: any) {
-    console.error('Error deleting project:', error);
-    return { success: false, error: error.message || 'Failed to delete project' };
+    console.error("Error deleting project:", error);
+    return {
+      success: false,
+      error: error.message || "Failed to delete project",
+    };
   }
 }

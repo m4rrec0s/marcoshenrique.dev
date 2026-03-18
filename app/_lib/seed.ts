@@ -1,64 +1,209 @@
-import { getDatabase } from './db';
-import projectsData from '../_data/projects.json';
+import { getDatabase } from "./db";
+
+const projectsData = [
+  {
+    name: "LNA-Doceria",
+    slug: "lna-doceria",
+    category: "E-commerce",
+    description:
+      "Aplicação Full-Stack para uma doceria, desenvolvida utilizando o framework Next.js no frontend e Node.js com express no backend.",
+    images: [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7x0LsbZUQRmWT6HUGOv8iP0NnVLKt7oMhrDEYq",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xD42E3j1TkldOxniDSwmXAE8QRLK6UrY3q9vs",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xwNNppNTXqNQY4tdwEMGiag531nCcKDWfZ7Jh",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xTmREvcYbZCfILMgcJAnwiSRQdT5oF8r0UvPz",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xCXiaTfPJRODo7leHmSWQaEyNPFiwbk4ns5rp",
+    ],
+    status: "Completed",
+    technologies: [
+      "Next.js",
+      "Tailwind",
+      "NodeJs",
+      "TypeScript",
+      "Axios",
+      "Express",
+      "Prisma",
+      "PostgreeSQL",
+    ],
+    github: "",
+    project: "https://lna-doceria.netlify.app/",
+  },
+  {
+    name: "Rise Worship",
+    slug: "rise-worship",
+    category: "Music Management Application",
+    description:
+      "O Rise Worship é uma plataforma web desenvolvida em Next.js com TypeScript que foi criada especialmente para equipes de louvor e músicos cristãos. A aplicação permite organizar e gerenciar repertórios musicais de forma colaborativa, facilitando a preparação de cultos e eventos religiosos através de um sistema de grupos, músicas e setlists.",
+    status: "Completed",
+    images: [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xZqBNQ4riV7fu156c9tSmEYwIngrzsC2R4dep",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7x4OMEschBeWJLw7qAUs3VtycdgD2Yrx8z6QpZ",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xqj8ufTtElWARUSNvYg1L5MnFwdp7cC3Xqa0B",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xJqgHYGwKkcPR2sETG0gZ5vIaBb8QpyHNt7Yd",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xbDkLMu4TzROdC1Yt8s3emSxBUu6FaGi0JnrI",
+    ],
+    technologies: [
+      "Next.js",
+      "NodeJs",
+      "Express",
+      "Axios",
+      "TypeScript",
+      "Tailwind",
+      "Prisma",
+    ],
+    github: "https://github.com/m4rrec0s/rise-worship-frontend",
+    project: "https://riseworship.netlify.app/",
+  },
+  {
+    name: "A²DN FITNESS",
+    slug: "aadn-fitness",
+    category: "Presentation website",
+    description:
+      "O projeto é um site de apresentação para uma academia, desenvolvido utilizando o framework Next.js.",
+    images: [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xmFLPaSUM5KxGBZ9knzPeApvS23lbcCNWquIt",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7x6hcEvopN8fuSIwAyMtVlakG9WErLCDYi21Un",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xDSTQB81TkldOxniDSwmXAE8QRLK6UrY3q9vs",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xQhXGhndtpv3VXyNPswOukqdW8jrzxclI5fMZ",
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xiVYcOshbZ9JDS8lYxUgBhVpq0kmQRiLMtX3a",
+    ],
+    status: "Completed",
+    technologies: ["Next.js", "React", "Tailwind", "TypeScript"],
+    github: "https://github.com/m4rrec0s/aadn-fitness",
+    project: "https://aadn-fitness.vercel.app/",
+  },
+  {
+    name: "MH food",
+    slug: "mh-food",
+    category: "Food Delivery Application",
+    description:
+      "O projeto é uma aplicação web para um serviço de entrega de comida, desenvolvida utilizando o framework Next.js.",
+    images: [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xJACzI3wKkcPR2sETG0gZ5vIaBb8QpyHNt7Yd",
+      "https://utfs.io/f/93d839e0-1605-4683-b726-f8ac3c2c2c4f-z8uvbx.png",
+      "https://utfs.io/f/961f4e66-a786-46db-a04f-9b02985dfb98-zb7k90.png",
+      "https://utfs.io/f/16fab9bd-c6dc-4900-ae5b-cdb592dffe39-yu5xut.png",
+      "https://utfs.io/f/87c866da-d460-4cba-ae42-c50fc9307179-yd4bgm.png",
+    ],
+    status: "Completed",
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind",
+      "TypeScript",
+      "JavaScript",
+      "Prisma",
+      "PostgreeSQL",
+      "Docker",
+    ],
+    github: "https://github.com/m4rrec0s/mh-food",
+    project: "https://mh-food.vercel.app/",
+  },
+  {
+    name: "TrackEquip",
+    slug: "track-equip",
+    category: "Equipment Tracking Application",
+    description:
+      "O projeto é uma aplicação web para rastreamento de equipamentos. Inclui busca de equipamentos, visualização de detalhes e status dos equipamentos.",
+    images: [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7x1JwkYRjIw03HKRYZmt27uqeOSX6cE5WylbMV",
+      "https://utfs.io/f/BhegMacQdV7xNcxa3uiz7tOwskcNBrnaZFPo8AL0fDgSvGpx",
+      "https://utfs.io/f/BhegMacQdV7xKZRQVwI6lV3f4Om0EpTCUB1gb5GdviQNrWuI",
+      "https://utfs.io/f/BhegMacQdV7xBtt7dgcQdV7xfrowZajygGJIS9ilU238kNcH",
+      "https://utfs.io/f/BhegMacQdV7xXprFsF67MsQUymfzwLBAFi46cetaKRITGxho",
+    ],
+    status: "Completed",
+    technologies: ["Next.js", "React", "Tailwind", "TypeScript", "JavaScript"],
+    github: "https://github.com/m4rrec0s/TrackEquip",
+    project: "https://track-equip.vercel.app/",
+  },
+  {
+    name: "TaskList",
+    slug: "tasklist",
+    category: "Training web application",
+    description:
+      "O projeto é uma aplicação web desenvolvida com Next.js, que é um gerenciador de exercícios e treinos. Inclui recursos para autenticação de usuários, busca de exercícios, visualização de detalhes de exercícios e treinos, e integração com o banco de dados Prisma.",
+    images: [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7xNqCWSbiz7tOwskcNBrnaZFPo8AL0fDgSvGpx",
+      "https://utfs.io/f/25330adf-d6f9-42b6-bac8-eaae4d1215f7-1ri2lq.png",
+      "https://utfs.io/f/d44082a6-67d0-45c0-8952-77cd6922a5cd-1ri2lr.png",
+      "https://utfs.io/f/e69b67b2-fbd6-487a-a57a-9f0f414e8fbf-1ri2ls.png",
+      "https://utfs.io/f/8ff323e1-58f4-4fe3-808a-1d61e637b82f-1ri2lt.png",
+    ],
+    status: "In Progress",
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind",
+      "TypeScript",
+      "JavaScript",
+      "Prisma",
+      "PostgreeSQL",
+    ],
+    github: "https://github.com/m4rrec0s/tasklist-app",
+    project: "https://tasklist-app-eight.vercel.app/",
+  },
+];
 
 export function seedDatabase() {
   const db = getDatabase();
 
-  // Check if data already exists
   const projectCount = db
-    .prepare('SELECT COUNT(*) as count FROM projects')
+    .prepare("SELECT COUNT(*) as count FROM projects")
     .get() as { count: number };
 
-  if (projectCount.count > 0) {
-    console.log('Database already seeded. Skipping...');
-    return;
-  }
-
-  console.log('Seeding database with projects...');
-
-  const insertProject = db.prepare(`
-    INSERT INTO projects (name, slug, category, description, images, status, technologies, github, project)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `);
-
-  for (const project of projectsData) {
-    insertProject.run(
-      project.name,
-      project.slug,
-      project.category,
-      project.description,
-      JSON.stringify(project.images),
-      project.status,
-      JSON.stringify(project.technologies),
-      project.github || null,
-      project.project || null
-    );
-  }
-
-  console.log(`✓ Seeded ${projectsData.length} projects`);
-
-  // Seed some default skills
   const skillsData = [
-    { name: 'Next.js', category: 'Frontend', level: 5 },
-    { name: 'React', category: 'Frontend', level: 5 },
-    { name: 'TypeScript', category: 'Languages', level: 4 },
-    { name: 'Tailwind CSS', category: 'Frontend', level: 5 },
-    { name: 'Node.js', category: 'Backend', level: 4 },
-    { name: 'Express', category: 'Backend', level: 4 },
-    { name: 'PostgreSQL', category: 'Database', level: 4 },
-    { name: 'Prisma', category: 'Database', level: 4 },
-    { name: 'Git', category: 'Tools', level: 5 },
-    { name: 'Docker', category: 'DevOps', level: 3 },
+    { name: "Next.js", category: "Frontend", level: 5 },
+    { name: "React", category: "Frontend", level: 5 },
+    { name: "TypeScript", category: "Languages", level: 4 },
+    { name: "Tailwind CSS", category: "Frontend", level: 5 },
+    { name: "Node.js", category: "Backend", level: 4 },
+    { name: "Express", category: "Backend", level: 4 },
+    { name: "PostgreSQL", category: "Database", level: 4 },
+    { name: "Prisma", category: "Database", level: 4 },
+    { name: "Git", category: "Tools", level: 5 },
+    { name: "Docker", category: "DevOps", level: 3 },
   ];
 
-  const insertSkill = db.prepare(`
-    INSERT INTO skills (name, category, level)
-    VALUES (?, ?, ?)
-  `);
+  if (projectCount.count === 0) {
+    console.log("Seeding database with projects...");
 
-  for (const skill of skillsData) {
-    insertSkill.run(skill.name, skill.category, skill.level);
+    const insertProject = db.prepare(`
+      INSERT INTO projects (name, slug, category, description, images, status, technologies, github, project)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    for (const project of projectsData) {
+      insertProject.run(
+        project.name,
+        project.slug,
+        project.category,
+        project.description,
+        JSON.stringify(project.images),
+        project.status,
+        JSON.stringify(project.technologies),
+        project.github || null,
+        project.project || null,
+      );
+    }
+
+    console.log(`✓ Seeded ${projectsData.length} projects`);
   }
 
-  console.log(`✓ Seeded ${skillsData.length} skills`);
+  const skillCount = db
+    .prepare("SELECT COUNT(*) as count FROM skills")
+    .get() as { count: number };
+
+  if (skillCount.count === 0) {
+    const insertSkill = db.prepare(`
+      INSERT INTO skills (name, category, level)
+      VALUES (?, ?, ?)
+    `);
+
+    for (const skill of skillsData) {
+      insertSkill.run(skill.name, skill.category, skill.level);
+    }
+
+    console.log(`✓ Seeded ${skillsData.length} skills`);
+  }
 }

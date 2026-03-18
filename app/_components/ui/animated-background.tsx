@@ -18,7 +18,7 @@ export default function AnimatedBackground() {
 
       {/* Glow spots */}
       <motion.div
-        className="fixed top-20 -left-20 w-72 h-72 bg-[#038C7F]/20 rounded-full blur-[100px] -z-10"
+        className="fixed top-20 -left-20 w-72 h-72 bg-[#737373]/20 rounded-full blur-[100px] -z-10"
         animate={{
           opacity: [0.2, 0.4, 0.2],
           scale: [1, 1.1, 1],

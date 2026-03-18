@@ -21,12 +21,10 @@ export default function TypingText({
   const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    // Delay before starting typing animation
     const delayTimeout = setTimeout(() => {
       setIsTyping(true);
       let currentIndex = 0;
 
-      // Start typing animation
       const typingInterval = setInterval(() => {
         if (currentIndex <= text.length) {
           setDisplayedText(text.substring(0, currentIndex));
@@ -43,7 +41,6 @@ export default function TypingText({
     return () => clearTimeout(delayTimeout);
   }, [text, typingSpeed, delay]);
 
-  // Blinking cursor effect
   useEffect(() => {
     const cursorInterval = setInterval(() => {
       setCursorVisible((prev) => !prev);
@@ -61,7 +58,7 @@ export default function TypingText({
     >
       {displayedText}
       {(isTyping || cursorVisible) && (
-        <span className="inline-block w-0.5 h-[1em] bg-[#038C7F] ml-0.5 align-middle animate-pulse" />
+        <span className="inline-block w-0.5 h-[1em] bg-neutral-900 dark:bg-neutral-300 ml-0.5 align-middle animate-pulse" />
       )}
     </motion.span>
   );

@@ -23,7 +23,7 @@ export default function SkillHighlight({
     >
       <div className="relative">
         <motion.div
-          className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#038C7F]/30 to-indigo-500/30 blur-lg opacity-75"
+          className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#737373]/30 to-indigo-500/30 blur-lg opacity-75"
           animate={{
             scale: [1, 1.02, 1],
             opacity: [0.5, 0.8, 0.5],
@@ -37,7 +37,7 @@ export default function SkillHighlight({
 
         <div className="relative bg-black/80 backdrop-blur-md p-6 rounded-lg border border-white/10">
           <div className="flex flex-col items-center gap-4">
-            {/* <div className="text-[#038C7F] text-5xl">
+            {/* <div className="text-[#737373] text-5xl">
               <TechnologiesList names={tech} />
             </div> */}
 
@@ -45,7 +45,7 @@ export default function SkillHighlight({
 
             <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden mt-2">
               <motion.div
-                className="h-full bg-gradient-to-r from-[#038C7F] to-[#A9D9D0]"
+                className="h-full bg-gradient-to-r from-[#737373] to-[#B3B3B3]"
                 initial={{ width: 0 }}
                 animate={{ width: `${expertise}%` }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
@@ -67,7 +67,7 @@ export default function SkillHighlight({
               >
                 <path
                   d="M5 5H12M12 5H19M12 5V12M12 12V19M12 12H19M12 12H5"
-                  stroke="#038C7F"
+                  stroke="#737373"
                   strokeWidth="0.5"
                   strokeLinecap="round"
                 />
@@ -86,7 +86,7 @@ export default function SkillHighlight({
                   cx="12"
                   cy="12"
                   r="8"
-                  stroke="#038C7F"
+                  stroke="#737373"
                   strokeWidth="0.5"
                 />
               </svg>

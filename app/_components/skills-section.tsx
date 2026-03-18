@@ -2,17 +2,6 @@
 
 import { motion } from "framer-motion";
 import Title from "./title";
-import TechnologiesList from "./technologies-list";
-
-const technologiesCategories = {
-  Frontend: ["React", "Next.js", "Vue", "Angular"],
-  Mobile: ["React Native", "Expo"],
-  Linguagens: ["TypeScript", "JavaScript", "Python", "Java", "PHP"],
-  Backend: ["Node.js", "Django", "Spring Boot", "Laravel", "Express"],
-  "Banco de Dados": ["PostgreSQL", "MySQL", "MongoDB"],
-  DevOps: ["Docker", "Git", "GitHub"],
-  "UI/UX": ["Tailwind", "CSS", "HTML", "Framer Motion"],
-};
 
 const allTechnologies = [
   "Next.js",
@@ -45,11 +34,11 @@ const allTechnologies = [
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="py-20 w-full relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-purple-500/5 to-transparent -z-10 opacity-40"></div>
+    <section id="skills" className="relative w-full overflow-hidden py-20">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/5 via-white/5 to-transparent opacity-40" />
 
       <motion.div
-        className="absolute top-10 left-10 w-20 h-20 border border-[#038C7F]/20 rounded-full -z-5"
+        className="absolute left-10 top-10 -z-10 h-20 w-20 rounded-full border border-[#737373]/20"
         animate={{
           scale: [1, 1.1, 1],
           opacity: [0.2, 0.4, 0.2],
@@ -63,7 +52,7 @@ export default function SkillsSection() {
       />
 
       <motion.div
-        className="absolute top-1/2 right-10 w-3 h-20 bg-gradient-to-b from-[#038C7F]/10 to-transparent -z-5"
+        className="absolute right-10 top-1/2 -z-10 h-20 w-3 bg-gradient-to-b from-[#737373]/10 to-transparent"
         animate={{
           height: [80, 120, 80],
           opacity: [0.2, 0.5, 0.2],
@@ -76,7 +65,7 @@ export default function SkillsSection() {
       />
 
       <motion.div
-        className="w-full flex justify-center mb-10"
+        className="mb-10 flex w-full justify-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
@@ -88,19 +77,53 @@ export default function SkillsSection() {
         />
       </motion.div>
 
-      <div className="container mx-auto px-4">
-        <motion.div
-          className="bg-black/20 backdrop-blur-sm rounded-xl p-6 border border-white/10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-        >
-          <TechnologiesList
-            names={allTechnologies}
-            categories={technologiesCategories}
-          />
-        </motion.div>
-      </div>
+      <motion.div
+        className="mx-auto w-full max-w-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.2 }}
+      >
+        <div className="[mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]">
+          <div
+            className="flex w-max flex-nowrap items-center will-change-transform"
+            style={{ animation: "skills-marquee 60s linear infinite" }}
+          >
+            <div className="flex shrink-0 flex-nowrap items-center gap-4 px-4 py-2">
+              {allTechnologies.map((technology) => (
+                <div
+                  key={`first-${technology}`}
+                  className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium tracking-wide text-white/80 backdrop-blur-sm transition-colors duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
+                >
+                  {technology}
+                </div>
+              ))}
+            </div>
+            <div
+              className="flex shrink-0 flex-nowrap items-center gap-4 px-4 py-2"
+              aria-hidden="true"
+            >
+              {allTechnologies.map((technology) => (
+                <div
+                  key={`second-${technology}`}
+                  className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium tracking-wide text-white/80 backdrop-blur-sm transition-colors duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
+                >
+                  {technology}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <style>{`
+          @keyframes skills-marquee {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+        `}</style>
+      </motion.div>
     </section>
   );
 }

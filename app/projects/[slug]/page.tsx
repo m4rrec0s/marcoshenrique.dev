@@ -1,158 +1,124 @@
-"use client";
-
-import { getProjectBySlug, getProjects } from "@/app/_data";
-import { Metadata } from "next";
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, EyeIcon, GithubIcon } from "lucide-react";
-import { Badge } from "@/app/_components/ui/badge";
-import ProjectTechnologies from "@/app/_components/technologies";
-import { motion } from "framer-motion";
+import { notFound } from "next/navigation";
+import { ArrowLeft, ExternalLink, GithubIcon } from "lucide-react";
+import { getProjectBySlug } from "../../_actions/projects";
+import ProjectTechnologies from "../../_components/technologies";
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
+interface ProjectDetailsPageProps {
+  params: { slug: string };
+}
 
-const ProjectPage = ({ params }: Props) => {
-  const project = getProjectBySlug(params.slug);
+export default async function ProjectDetailsPage({
+  params,
+}: ProjectDetailsPageProps) {
+  const { slug } = params;
+  const response = await getProjectBySlug(slug);
+
+  if (!response.success || !response.data) {
+    notFound();
+  }
+
+  const project = response.data;
+
   return (
-    <section className="container mx-auto py-10 px-4 md:px-6">
-      <div className="mt-8">
+    <main className="min-h-screen bg-neutral-950 px-4 py-10 text-white sm:px-8 lg:px-12">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-gray-200 mb-8 transition-colors duration-300 bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
+          className="inline-flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-white"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft size={16} />
           Voltar para projetos
         </Link>
-      </div>
 
-      <motion.div
-        className="max-w-6xl mx-auto"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-          <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
-              {project?.name || "Projeto"}
+        <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="space-y-4">
+            <p className="text-xs uppercase tracking-[0.4em] text-gray-400">
+              {project.category}
+            </p>
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+              {project.name}
             </h1>
-            <p className="text-gray-400 text-lg">{project?.category || ""}</p>
-          </div>
-          <Badge
-            className={
-              project?.status === "Completed"
-                ? "bg-green-900/70 text-green-300 hover:bg-green-800 mt-2 md:mt-0"
-                : "bg-yellow-800/70 text-yellow-300 hover:bg-yellow-700 mt-2 md:mt-0"
-            }
-          >
-            {project?.status || "Em Progresso"}
-          </Badge>
-        </div>
+            <p className="max-w-3xl text-base leading-8 text-gray-300">
+              {project.description}
+            </p>
 
-        {/* Grid de imagens */}
-        {project?.images && project.images.length > 0 ? (
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            {/* Primeira imagem maior (principal) */}
-            <div className="md:col-span-2 relative overflow-hidden rounded-xl border border-white/10 shadow-xl">
-              <Image
-                src={project.images[0]}
-                alt={`${project.name} - Imagem principal`}
-                width={1200}
-                height={800}
-                quality={90}
-                className="w-full h-full object-cover aspect-video transition-transform duration-500 hover:scale-105"
-              />
+            <div className="flex flex-wrap gap-3 pt-2">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-200 transition-colors hover:bg-white/10"
+                >
+                  <GithubIcon size={16} />
+                  GitHub
+                </a>
+              )}
+              {project.project && (
+                <a
+                  href={project.project}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition-colors hover:opacity-90"
+                >
+                  <ExternalLink size={16} />
+                  Live Demo
+                </a>
+              )}
             </div>
+          </div>
 
-            {/* Imagens secundárias em grid */}
+          <div className="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 shadow-2xl shadow-black/30 backdrop-blur-xl">
+            <Image
+              src={project.images[0] || "/banner.svg"}
+              alt={project.name}
+              width={1200}
+              height={800}
+              priority
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </section>
+
+        <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">
+              Status
+            </p>
+            <p className="mt-3 text-lg font-semibold">{project.status}</p>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
+            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">
+              Tecnologias
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <ProjectTechnologies technologies={project.technologies} />
+            </div>
+          </div>
+        </section>
+
+        {project.images.length > 1 && (
+          <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {project.images.slice(1).map((image, index) => (
               <div
-                key={index}
-                className="relative overflow-hidden rounded-xl border border-white/10 shadow-lg"
+                key={`${project.slug}-${index}`}
+                className="overflow-hidden rounded-3xl border border-white/10 bg-white/5"
               >
                 <Image
                   src={image}
-                  alt={`${project.name} - Imagem ${index + 2}`}
-                  width={600}
-                  height={600}
-                  quality={80}
-                  className="w-full h-full object-cover aspect-square transition-transform duration-500 hover:scale-105"
+                  alt={`${project.name} screenshot ${index + 2}`}
+                  width={900}
+                  height={700}
+                  className="h-72 w-full object-cover"
                 />
               </div>
             ))}
-          </motion.div>
-        ) : (
-          <div className="relative overflow-hidden rounded-xl border border-white/10 shadow-xl mb-8">
-            <Image
-              src="https://utfs.io/f/8b675edc-f21a-4e20-a69b-48fbd5f93195-9pcde4.png"
-              alt={`${project?.name || "Projeto"} - Imagem padrão`}
-              width={1200}
-              height={800}
-              quality={90}
-              className="w-full h-full object-cover aspect-video transition-transform duration-500 hover:scale-105"
-            />
-          </div>
+          </section>
         )}
-
-        {/* Conteúdo do projeto */}
-        <motion.div
-          className="bg-black/20 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-white/10"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <div className="mb-6">
-            <h2 className="text-xl font-semibold text-white mb-3">Descrição</h2>
-            <p className="text-gray-300 leading-relaxed">
-              {project?.description || "Descrição do projeto não disponível."}
-            </p>
-          </div>
-          <div className="mb-6">
-            <h2 className="text-xl font-semibold text-white mb-3">
-              Tecnologias
-            </h2>
-            <div className="flex flex-wrap gap-3">
-              <ProjectTechnologies technologies={project?.technologies || []} />
-            </div>
-          </div>{" "}
-          <div className="flex flex-col sm:flex-row gap-4">
-            {project?.project && (
-              <Link
-                href={project.project}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-blue-600/80 hover:bg-blue-500/80 text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium"
-              >
-                <EyeIcon className="h-5 w-5" />
-                Ver Projeto
-              </Link>
-            )}
-            {project?.github && (
-              <Link
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-gray-800/80 hover:bg-gray-700/80 text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium"
-              >
-                <GithubIcon className="h-5 w-5" />
-                Ver no GitHub
-              </Link>
-            )}
-          </div>
-        </motion.div>
-      </motion.div>
-    </section>
+      </div>
+    </main>
   );
-};
-
-export default ProjectPage;
+}

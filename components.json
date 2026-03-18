@@ -10,9 +10,13 @@
     "cssVariables": true,
     "prefix": ""
   },
+  "iconLibrary": "lucide",
   "aliases": {
     "components": "@/app/_components",
     "utils": "@/app/_lib/utils",
     "ui": "@/app/_components/ui"
+  },
+  "registries": {
+    "@aceternity": "https://ui.aceternity.com/registry/{name}.json"
   }
 }
