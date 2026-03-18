@@ -5,9 +5,30 @@ import { useEffect, useRef, useState } from "react";
 import ProjectItem from "./project-item";
 import Title from "./title";
 import { getProjects, type Project } from "../_actions/projects";
+import { seedProjects } from "../_lib/seed";
+
+function mapSeedProject(
+  project: (typeof seedProjects)[number],
+  index: number,
+): Project {
+  return {
+    id: index + 1,
+    name: project.name,
+    slug: project.slug,
+    category: project.category,
+    description: project.description,
+    images: project.images,
+    status: project.status === "Completed" ? "Completed" : "In Progress",
+    technologies: project.technologies,
+    github: project.github || null,
+    project: project.project || null,
+  };
+}
+
+const fallbackProjects = seedProjects.map(mapSeedProject);
 
 export default function ProjectsSection() {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[]>(fallbackProjects);
   const [loading, setLoading] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -27,6 +48,8 @@ export default function ProjectsSection() {
 
       if (mounted && response.success && response.data) {
         setProjects(response.data);
+      } else if (mounted) {
+        setProjects(fallbackProjects);
       }
 
       if (mounted) {
