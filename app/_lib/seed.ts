@@ -1,6 +1,6 @@
 import { getDatabase } from "./db";
 
-const projectsData = [
+export const seedProjects = [
   {
     name: "LNA-Doceria",
     slug: "lna-doceria",
@@ -143,6 +143,28 @@ const projectsData = [
     github: "https://github.com/m4rrec0s/tasklist-app",
     project: "https://tasklist-app-eight.vercel.app/",
   },
+  {
+    name: "Cesto d'Amore",
+    slug: "cesto-damore",
+    category: "e-commerce",
+    description:
+      "Aplicação Next de E-commerce Full-Stack. O projeto possui lógicas de customização individual e em tempo real para adição de fotos e todo o ecossistema para a personalização de itens de produtos. Também possui sistema de pagamento via Mercado Pago.",
+    images: [
+      "https://6c8fb3gvzm.ufs.sh/f/BhegMacQdV7x9a5Gk0b8rad1PAiBsExV4SWYpmzJt0ykQcqe",
+    ],
+    status: "Completed",
+    technologies: [
+      "Next.js",
+      "Node.js",
+      "Docker",
+      "TypeScript",
+      "Tailwind",
+      "Prisma",
+      "Express",
+    ],
+    github: null,
+    project: "https://www.cestodamore.com.br/",
+  },
 ];
 
 export function seedDatabase() {
@@ -173,7 +195,7 @@ export function seedDatabase() {
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
 
-    for (const project of projectsData) {
+    for (const project of seedProjects) {
       insertProject.run(
         project.name,
         project.slug,
@@ -187,7 +209,7 @@ export function seedDatabase() {
       );
     }
 
-    console.log(`✓ Seeded ${projectsData.length} projects`);
+    console.log(`✓ Seeded ${seedProjects.length} projects`);
   }
 
   const skillCount = db

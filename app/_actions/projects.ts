@@ -1,7 +1,7 @@
 "use server";
 
 import { getDatabase, initializeDatabase } from "@/app/_lib/db";
-import { seedDatabase } from "@/app/_lib/seed";
+import { seedDatabase, seedProjects } from "@/app/_lib/seed";
 
 const VALID_API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -72,6 +72,24 @@ function mapProjectRow(row: any): Project {
   };
 }
 
+function mapSeedProject(
+  project: (typeof seedProjects)[number],
+  index: number,
+): Project {
+  return {
+    id: index + 1,
+    name: project.name,
+    slug: project.slug,
+    category: project.category,
+    description: project.description,
+    images: project.images,
+    status: project.status === "Completed" ? "Completed" : "In Progress",
+    technologies: project.technologies,
+    github: project.github || null,
+    project: project.project || null,
+  };
+}
+
 export async function getProjects(apiKey?: string) {
   try {
     initializeDatabase();
@@ -81,6 +99,13 @@ export async function getProjects(apiKey?: string) {
     const projects = db
       .prepare("SELECT * FROM projects ORDER BY created_at DESC")
       .all();
+
+    if (projects.length === 0) {
+      return {
+        success: true,
+        data: seedProjects.map(mapSeedProject),
+      };
+    }
 
     return {
       success: true,
@@ -103,6 +128,18 @@ export async function getProjectBySlug(slug: string) {
       .get(slug);
 
     if (!project) {
+      const fallbackProject = seedProjects.find((item) => item.slug === slug);
+
+      if (fallbackProject) {
+        return {
+          success: true,
+          data: mapSeedProject(
+            fallbackProject,
+            seedProjects.indexOf(fallbackProject),
+          ),
+        };
+      }
+
       return { success: false, error: "Project not found" };
     }
 
