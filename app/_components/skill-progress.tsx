@@ -5,10 +5,12 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 interface SkillProgressProps {
-  slill: { name: string; percentage: number; delay?: number };
+  name: string;
+  percentage: number;
+  delay?: number;
 }
 
-const SkillProgress = ({ slill }: SkillProgressProps) => {
+const SkillProgress = ({ name, percentage, delay }: SkillProgressProps) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -32,7 +34,7 @@ const SkillProgress = ({ slill }: SkillProgressProps) => {
           y: 0,
           transition: {
             duration: 0.5,
-            delay: slill.delay || 0 * 0.2,
+            delay: delay ?? 0,
             ease: "easeInOut",
           },
         },
@@ -40,10 +42,8 @@ const SkillProgress = ({ slill }: SkillProgressProps) => {
       className="mb-6 w-full max-w-md"
     >
       <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium text-white">{slill.name}</span>
-        <span className="text-xs font-medium text-gray-400">
-          {slill.percentage}%
-        </span>
+        <span className="text-sm font-medium text-white">{name}</span>
+        <span className="text-xs font-medium text-gray-400">{percentage}%</span>
       </div>
       <div className="w-full bg-white/10 rounded-full h-2.5 overflow-hidden">
         <motion.div
@@ -51,10 +51,10 @@ const SkillProgress = ({ slill }: SkillProgressProps) => {
           animate={controls}
           variants={{
             visible: {
-              width: `${slill.percentage}%`,
+              width: `${percentage}%`,
               transition: {
                 duration: 1,
-                delay: slill.delay || 0 + 0.3,
+                delay: (delay ?? 0) + 0.3,
                 ease: "easeInOut",
               },
             },
