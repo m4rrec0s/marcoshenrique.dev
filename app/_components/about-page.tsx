@@ -68,8 +68,9 @@ const AboutPage = () => {
     <motion.section
       ref={sectionRef}
       id="about"
-      className="relative isolate flex w-full overflow-hidden px-4 py-24 sm:px-8 lg:py-32"
+      className="relative isolate flex w-full overflow-hidden px-4 py-24 scroll-mt-24 sm:px-8 lg:py-32"
     >
+      <div className="pointer-events-none absolute -top-1 left-0 z-10 h-[10rem] w-full bg-gradient-to-t from-transparent to-background" />
       <motion.div
         aria-hidden
         style={{ y: backgroundY }}
@@ -204,7 +205,7 @@ const AboutPage = () => {
               Trajetória
             </p>
             <p className="mt-3 text-lg font-medium text-white">
-              Aprendizado contínuo com atenção ao detalhe e entrega real.
+              Conhecimento; Prática, Evolução.
             </p>
           </div>
         </motion.div>

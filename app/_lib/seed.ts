@@ -1,5 +1,3 @@
-import { getDatabase } from "./db";
-
 export const seedProjects = [
   {
     name: "LNA-Doceria",
@@ -167,65 +165,22 @@ export const seedProjects = [
   },
 ];
 
+export const seedSkills = [
+  { name: "Next.js", category: "Frontend", level: 5 },
+  { name: "React", category: "Frontend", level: 5 },
+  { name: "TypeScript", category: "Languages", level: 4 },
+  { name: "Tailwind CSS", category: "Frontend", level: 5 },
+  { name: "Node.js", category: "Backend", level: 4 },
+  { name: "Express", category: "Backend", level: 4 },
+  { name: "PostgreSQL", category: "Database", level: 4 },
+  { name: "Prisma", category: "Database", level: 4 },
+  { name: "Git", category: "Tools", level: 5 },
+  { name: "Docker", category: "DevOps", level: 3 },
+];
+
 export function seedDatabase() {
-  const db = getDatabase();
-
-  const projectCount = db
-    .prepare("SELECT COUNT(*) as count FROM projects")
-    .get() as { count: number };
-
-  const skillsData = [
-    { name: "Next.js", category: "Frontend", level: 5 },
-    { name: "React", category: "Frontend", level: 5 },
-    { name: "TypeScript", category: "Languages", level: 4 },
-    { name: "Tailwind CSS", category: "Frontend", level: 5 },
-    { name: "Node.js", category: "Backend", level: 4 },
-    { name: "Express", category: "Backend", level: 4 },
-    { name: "PostgreSQL", category: "Database", level: 4 },
-    { name: "Prisma", category: "Database", level: 4 },
-    { name: "Git", category: "Tools", level: 5 },
-    { name: "Docker", category: "DevOps", level: 3 },
-  ];
-
-  if (projectCount.count === 0) {
-    console.log("Seeding database with projects...");
-
-    const insertProject = db.prepare(`
-      INSERT INTO projects (name, slug, category, description, images, status, technologies, github, project)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `);
-
-    for (const project of seedProjects) {
-      insertProject.run(
-        project.name,
-        project.slug,
-        project.category,
-        project.description,
-        JSON.stringify(project.images),
-        project.status,
-        JSON.stringify(project.technologies),
-        project.github || null,
-        project.project || null,
-      );
-    }
-
-    console.log(`✓ Seeded ${seedProjects.length} projects`);
-  }
-
-  const skillCount = db
-    .prepare("SELECT COUNT(*) as count FROM skills")
-    .get() as { count: number };
-
-  if (skillCount.count === 0) {
-    const insertSkill = db.prepare(`
-      INSERT INTO skills (name, category, level)
-      VALUES (?, ?, ?)
-    `);
-
-    for (const skill of skillsData) {
-      insertSkill.run(skill.name, skill.category, skill.level);
-    }
-
-    console.log(`✓ Seeded ${skillsData.length} skills`);
-  }
+  return {
+    projects: seedProjects,
+    skills: seedSkills,
+  };
 }

@@ -34,7 +34,10 @@ const allTechnologies = [
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="relative w-full overflow-hidden py-20">
+    <section
+      id="skills"
+      className="relative w-full overflow-hidden py-20 scroll-mt-24"
+    >
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/5 via-white/5 to-transparent opacity-40" />
 
       <motion.div

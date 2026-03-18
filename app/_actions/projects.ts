@@ -1,7 +1,6 @@
 "use server";
 
-import { getDatabase, initializeDatabase } from "@/app/_lib/db";
-import { seedDatabase, seedProjects } from "@/app/_lib/seed";
+import { seedProjects } from "@/app/_lib/seed";
 
 const VALID_API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -42,33 +41,11 @@ function validateApiKey(key?: string): boolean {
   return key === VALID_API_KEY;
 }
 
-function parseJsonArray(value: string | null | undefined): string[] {
-  if (!value) {
-    return [];
-  }
-
-  try {
-    const parsed = JSON.parse(value);
-    return Array.isArray(parsed) ? parsed.filter(Boolean) : [];
-  } catch {
-    return [];
-  }
-}
-
-function mapProjectRow(row: any): Project {
+function cloneProject(project: Project): Project {
   return {
-    id: Number(row.id),
-    name: row.name,
-    slug: row.slug,
-    category: row.category,
-    description: row.description,
-    images: parseJsonArray(row.images),
-    status: row.status === "Completed" ? "Completed" : "In Progress",
-    technologies: parseJsonArray(row.technologies),
-    github: row.github || null,
-    project: row.project || null,
-    created_at: row.created_at,
-    updated_at: row.updated_at,
+    ...project,
+    images: [...project.images],
+    technologies: [...project.technologies],
   };
 }
 
@@ -90,26 +67,20 @@ function mapSeedProject(
   };
 }
 
+let projectsStore: Project[] = seedProjects.map(mapSeedProject);
+let nextProjectId = projectsStore.length + 1;
+
+function getProjectStoreIndex(id: number) {
+  return projectsStore.findIndex((project) => project.id === id);
+}
+
 export async function getProjects(apiKey?: string) {
   try {
-    initializeDatabase();
-    seedDatabase();
-
-    const db = getDatabase();
-    const projects = db
-      .prepare("SELECT * FROM projects ORDER BY created_at DESC")
-      .all();
-
-    if (projects.length === 0) {
-      return {
-        success: true,
-        data: seedProjects.map(mapSeedProject),
-      };
-    }
-
     return {
       success: true,
-      data: projects.map(mapProjectRow),
+      data: [...projectsStore]
+        .sort((left, right) => right.id - left.id)
+        .map(cloneProject),
     };
   } catch (error) {
     console.error("Error fetching projects:", error);
@@ -119,33 +90,15 @@ export async function getProjects(apiKey?: string) {
 
 export async function getProjectBySlug(slug: string) {
   try {
-    initializeDatabase();
-    seedDatabase();
-
-    const db = getDatabase();
-    const project = db
-      .prepare("SELECT * FROM projects WHERE slug = ?")
-      .get(slug);
+    const project = projectsStore.find((item) => item.slug === slug);
 
     if (!project) {
-      const fallbackProject = seedProjects.find((item) => item.slug === slug);
-
-      if (fallbackProject) {
-        return {
-          success: true,
-          data: mapSeedProject(
-            fallbackProject,
-            seedProjects.indexOf(fallbackProject),
-          ),
-        };
-      }
-
       return { success: false, error: "Project not found" };
     }
 
     return {
       success: true,
-      data: mapProjectRow(project),
+      data: cloneProject(project),
     };
   } catch (error) {
     console.error("Error fetching project:", error);
@@ -159,29 +112,39 @@ export async function createProject(data: ProjectInput, apiKey?: string) {
   }
 
   try {
-    initializeDatabase();
-    const db = getDatabase();
-
-    const stmt = db.prepare(`
-      INSERT INTO projects (name, slug, category, description, images, status, technologies, github, project)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `);
-
-    const result = stmt.run(
-      data.name,
-      data.slug,
-      data.category,
-      data.description,
-      JSON.stringify(data.images),
-      data.status,
-      JSON.stringify(data.technologies),
-      data.github || null,
-      data.project || null,
+    const existingProject = projectsStore.find(
+      (item) => item.slug === data.slug,
     );
+
+    if (existingProject) {
+      return {
+        success: false,
+        error: "A project with this slug already exists",
+      };
+    }
+
+    const now = new Date().toISOString();
+    projectsStore = [
+      {
+        id: nextProjectId++,
+        name: data.name,
+        slug: data.slug,
+        category: data.category,
+        description: data.description,
+        images: [...data.images],
+        status: data.status,
+        technologies: [...data.technologies],
+        github: data.github || null,
+        project: data.project || null,
+        created_at: now,
+        updated_at: now,
+      },
+      ...projectsStore,
+    ];
 
     return {
       success: true,
-      data: { id: result.lastInsertRowid },
+      data: { id: nextProjectId - 1 },
     };
   } catch (error: any) {
     console.error("Error creating project:", error);
@@ -202,55 +165,32 @@ export async function updateProject(
   }
 
   try {
-    initializeDatabase();
-    const db = getDatabase();
+    const projectIndex = getProjectStoreIndex(id);
 
-    const updates: string[] = [];
-    const values: any[] = [];
-
-    if (data.name !== undefined) {
-      updates.push("name = ?");
-      values.push(data.name);
-    }
-    if (data.slug !== undefined) {
-      updates.push("slug = ?");
-      values.push(data.slug);
-    }
-    if (data.category !== undefined) {
-      updates.push("category = ?");
-      values.push(data.category);
-    }
-    if (data.description !== undefined) {
-      updates.push("description = ?");
-      values.push(data.description);
-    }
-    if (data.images !== undefined) {
-      updates.push("images = ?");
-      values.push(JSON.stringify(data.images));
-    }
-    if (data.status !== undefined) {
-      updates.push("status = ?");
-      values.push(data.status);
-    }
-    if (data.technologies !== undefined) {
-      updates.push("technologies = ?");
-      values.push(JSON.stringify(data.technologies));
-    }
-    if (data.github !== undefined) {
-      updates.push("github = ?");
-      values.push(data.github || null);
-    }
-    if (data.project !== undefined) {
-      updates.push("project = ?");
-      values.push(data.project || null);
+    if (projectIndex === -1) {
+      return { success: false, error: "Project not found" };
     }
 
-    updates.push("updated_at = CURRENT_TIMESTAMP");
-    values.push(id);
-
-    const query = `UPDATE projects SET ${updates.join(", ")} WHERE id = ?`;
-    const stmt = db.prepare(query);
-    stmt.run(...values);
+    const currentProject = projectsStore[projectIndex];
+    projectsStore[projectIndex] = {
+      ...currentProject,
+      name: data.name ?? currentProject.name,
+      slug: data.slug ?? currentProject.slug,
+      category: data.category ?? currentProject.category,
+      description: data.description ?? currentProject.description,
+      images: data.images ? [...data.images] : currentProject.images,
+      status: data.status ?? currentProject.status,
+      technologies: data.technologies
+        ? [...data.technologies]
+        : currentProject.technologies,
+      github:
+        data.github !== undefined ? data.github || null : currentProject.github,
+      project:
+        data.project !== undefined
+          ? data.project || null
+          : currentProject.project,
+      updated_at: new Date().toISOString(),
+    };
 
     return { success: true };
   } catch (error: any) {
@@ -268,10 +208,13 @@ export async function deleteProject(id: number, apiKey?: string) {
   }
 
   try {
-    initializeDatabase();
-    const db = getDatabase();
+    const projectIndex = getProjectStoreIndex(id);
 
-    db.prepare("DELETE FROM projects WHERE id = ?").run(id);
+    if (projectIndex === -1) {
+      return { success: false, error: "Project not found" };
+    }
+
+    projectsStore = projectsStore.filter((project) => project.id !== id);
 
     return { success: true };
   } catch (error: any) {

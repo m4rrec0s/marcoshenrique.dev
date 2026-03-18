@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${montserrat.className} dark bg-black`}>
+      <body className={`${montserrat.className} dark bg-black scroll-smooth`}>
         <main className="flex-1 flex flex-col justify-center items-center w-full">
           {children}
         </main>

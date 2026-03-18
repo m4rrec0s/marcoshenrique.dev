@@ -1,7 +1,6 @@
 "use server";
 
-import { getDatabase, initializeDatabase } from "@/app/_lib/db";
-import { seedDatabase } from "@/app/_lib/seed";
+import { seedSkills } from "@/app/_lib/seed";
 
 const VALID_API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -28,30 +27,41 @@ function validateApiKey(key?: string): boolean {
   return key === VALID_API_KEY;
 }
 
-function mapSkillRow(row: any): Skill {
+function cloneSkill(skill: Skill): Skill {
   return {
-    id: Number(row.id),
-    name: row.name,
-    category: row.category,
-    level: Number(row.level ?? 3),
-    created_at: row.created_at,
-    updated_at: row.updated_at,
+    ...skill,
   };
+}
+
+let skillsStore: Skill[] = seedSkills.map((skill, index) => ({
+  id: index + 1,
+  name: skill.name,
+  category: skill.category,
+  level: skill.level,
+}));
+let nextSkillId = skillsStore.length + 1;
+
+function getSkillStoreIndex(id: number) {
+  return skillsStore.findIndex((skill) => skill.id === id);
 }
 
 export async function getSkills() {
   try {
-    initializeDatabase();
-    seedDatabase();
-
-    const db = getDatabase();
-    const skills = db
-      .prepare("SELECT * FROM skills ORDER BY category, name")
-      .all();
-
     return {
       success: true,
-      data: skills.map(mapSkillRow),
+      data: [...skillsStore]
+        .sort((left, right) => {
+          const categoryOrder = left.category.localeCompare(
+            right.category,
+            "pt-BR",
+          );
+          if (categoryOrder !== 0) {
+            return categoryOrder;
+          }
+
+          return left.name.localeCompare(right.name, "pt-BR");
+        })
+        .map(cloneSkill),
     };
   } catch (error) {
     console.error("Error fetching skills:", error);
@@ -65,19 +75,22 @@ export async function createSkill(data: SkillInput, apiKey?: string) {
   }
 
   try {
-    initializeDatabase();
-    const db = getDatabase();
-
-    const stmt = db.prepare(`
-      INSERT INTO skills (name, category, level)
-      VALUES (?, ?, ?)
-    `);
-
-    const result = stmt.run(data.name, data.category, data.level);
+    const now = new Date().toISOString();
+    skillsStore = [
+      {
+        id: nextSkillId++,
+        name: data.name,
+        category: data.category,
+        level: data.level,
+        created_at: now,
+        updated_at: now,
+      },
+      ...skillsStore,
+    ];
 
     return {
       success: true,
-      data: { id: result.lastInsertRowid },
+      data: { id: nextSkillId - 1 },
     };
   } catch (error: any) {
     console.error("Error creating skill:", error);
@@ -95,35 +108,20 @@ export async function updateSkill(
   }
 
   try {
-    initializeDatabase();
-    const db = getDatabase();
+    const skillIndex = getSkillStoreIndex(id);
 
-    const updates: string[] = [];
-    const values: any[] = [];
-
-    if (data.name !== undefined) {
-      updates.push("name = ?");
-      values.push(data.name);
-    }
-    if (data.category !== undefined) {
-      updates.push("category = ?");
-      values.push(data.category);
-    }
-    if (data.level !== undefined) {
-      updates.push("level = ?");
-      values.push(data.level);
+    if (skillIndex === -1) {
+      return { success: false, error: "Skill not found" };
     }
 
-    if (updates.length === 0) {
-      return { success: true };
-    }
-
-    updates.push("updated_at = CURRENT_TIMESTAMP");
-    values.push(id);
-
-    const query = `UPDATE skills SET ${updates.join(", ")} WHERE id = ?`;
-    const stmt = db.prepare(query);
-    stmt.run(...values);
+    const currentSkill = skillsStore[skillIndex];
+    skillsStore[skillIndex] = {
+      ...currentSkill,
+      name: data.name ?? currentSkill.name,
+      category: data.category ?? currentSkill.category,
+      level: data.level ?? currentSkill.level,
+      updated_at: new Date().toISOString(),
+    };
 
     return { success: true };
   } catch (error: any) {
@@ -138,10 +136,13 @@ export async function deleteSkill(id: number, apiKey?: string) {
   }
 
   try {
-    initializeDatabase();
-    const db = getDatabase();
+    const skillIndex = getSkillStoreIndex(id);
 
-    db.prepare("DELETE FROM skills WHERE id = ?").run(id);
+    if (skillIndex === -1) {
+      return { success: false, error: "Skill not found" };
+    }
+
+    skillsStore = skillsStore.filter((skill) => skill.id !== id);
 
     return { success: true };
   } catch (error: any) {

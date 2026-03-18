@@ -1,13 +1,18 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import TypingText from "./ui/typing-text";
+import { ChevronDown } from "lucide-react";
 
 export default function HomeEntry() {
   return (
-    <section className="relative isolate flex min-h-[calc(100vh-8rem)] w-full overflow-hidden">
-      <div className="absolute left-5 top-5 z-10">
+    <section
+      id="home"
+      className="relative isolate flex min-h-screen w-full overflow-hidden scroll-mt-24"
+    >
+      <div className="absolute sm:left-5 sm:top-5 z-10 bottom-5 right-5">
         <Image
           src="/logo_marcos.svg"
           alt=""
@@ -15,7 +20,7 @@ export default function HomeEntry() {
           width={60}
           height={60}
           quality={100}
-          className="object-contain object-center"
+          className="object-contain object-right-top"
         />
       </div>
       <div className="absolute inset-0 pointer-events-none">
@@ -27,7 +32,7 @@ export default function HomeEntry() {
           priority
           sizes="100vw"
           quality={100}
-          className="object-cover object-center"
+          className="object-cover object-[88%_center] sm:object-[80%_center] lg:object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-transparent dark:via-background/75" />
       </div>
@@ -72,6 +77,16 @@ export default function HomeEntry() {
           </div>
         </div>
       </div>
+
+      <motion.a
+        href="#about"
+        className="absolute bottom-8 left-1/2 z-20 inline-flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-white/10 px-5 py-3 text-sm font-medium text-white shadow-lg shadow-black/30 backdrop-blur-xl transition-colors hover:bg-white/20"
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <ChevronDown size={16} />
+        Veja mais
+      </motion.a>
     </section>
   );
 }

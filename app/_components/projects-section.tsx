@@ -68,7 +68,7 @@ export default function ProjectsSection() {
     <motion.section
       ref={sectionRef}
       id="projects"
-      className="relative isolate w-full overflow-hidden px-4 py-24 sm:px-8 lg:py-32"
+      className="relative isolate w-full overflow-hidden px-4 py-24 scroll-mt-24 sm:px-8 lg:py-32"
     >
       <motion.div
         aria-hidden
