@@ -1,9 +1,8 @@
-"use client";
+'use client';
 
-import ProjectItem from "./project-item";
-import Title from "./title";
-import { getProjects } from "../_data";
-import { motion } from "framer-motion";
+import ProjectItem from './project-item';
+import Title from './title';
+import { getProjects } from '../_data';
 
 export default function ProjectsSection() {
   const projects = getProjects();
@@ -18,23 +17,13 @@ export default function ProjectsSection() {
         />
       </div>
       <div className="container mx-auto px-4">
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.slug}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project) => (
+            <div key={project.slug}>
               <ProjectItem project={project} />
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

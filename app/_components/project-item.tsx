@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Badge } from "./ui/badge";
 import Image from "next/image";
 import { ArrowUpRight, EyeIcon, GithubIcon } from "lucide-react";
-import { motion } from "framer-motion";
 
 import ProjectTechnologies from "./technologies";
 import { Project } from "../_data";
@@ -13,16 +12,7 @@ export interface ProjectItemProps {
 
 export default function ProjectItem({ project }: ProjectItemProps) {
   return (
-    <motion.div
-      className="bg-black/10 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300"
-      whileHover={{
-        y: -5,
-        boxShadow: "0 10px 30px -15px rgba(255, 255, 255, 0.2)",
-      }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
       <Link href={`/projects/${project.slug}`} className="block">
         <div className="relative overflow-hidden aspect-video">
           <Image
@@ -34,14 +24,14 @@ export default function ProjectItem({ project }: ProjectItemProps) {
             width={600}
             height={400}
             quality={90}
-            className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105"
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
           <div className="absolute top-3 left-3">
             <Badge
               className={
                 project.status === "Completed"
-                  ? "bg-green-900/70 text-green-300 hover:bg-green-800"
-                  : "bg-yellow-800/70 text-yellow-300 hover:bg-yellow-700"
+                  ? "bg-green-600 text-white"
+                  : "bg-yellow-600 text-white"
               }
             >
               {project.status}
@@ -49,34 +39,23 @@ export default function ProjectItem({ project }: ProjectItemProps) {
           </div>
         </div>
 
-        <div className="p-6 flex flex-col gap-4">
+        <div className="p-4 flex flex-col gap-3">
           <div className="flex justify-between items-start">
             <div>
-              <p className="text-sm text-gray-400 mb-1">{project.category}</p>
-              <h2
-                className="text-xl font-bold text-white group-hover:text-primary transition-colors"
-                translate="no"
-              >
+              <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{project.category}</p>
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white">
                 {project.name}
               </h2>
             </div>
-            <motion.div
-              className="bg-white/10 p-2 rounded-full"
-              whileHover={{ rotate: 45 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ArrowUpRight className="text-white" size={16} />
-            </motion.div>
+            <ArrowUpRight className="text-gray-400 dark:text-gray-500" size={16} />
           </div>
 
-          <div className="prose max-w-none">
-            <p className="text-gray-300 text-sm line-clamp-3">
-              {project.description}
-            </p>
-          </div>
+          <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+            {project.description}
+          </p>
 
           <div>
-            <h3 className="text-xs font-semibold mb-2 text-gray-400">
+            <h3 className="text-xs font-semibold mb-2 text-gray-600 dark:text-gray-400">
               Tecnologias
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -84,7 +63,7 @@ export default function ProjectItem({ project }: ProjectItemProps) {
                 <ProjectTechnologies key={index} technologies={[technology]} />
               ))}
               {project.technologies.length > 4 && (
-                <Badge className="bg-white/10 text-gray-300 hover:bg-white/20">
+                <Badge className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600">
                   +{project.technologies.length - 4}
                 </Badge>
               )}
@@ -97,7 +76,7 @@ export default function ProjectItem({ project }: ProjectItemProps) {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex gap-1 items-center text-xs text-gray-400 hover:text-white transition-colors"
+                className="flex gap-1 items-center text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >
                 <GithubIcon width={16} height={16} />
@@ -107,7 +86,7 @@ export default function ProjectItem({ project }: ProjectItemProps) {
             {project.project && (
               <Link
                 href={project.project}
-                className="flex gap-1 items-center text-xs text-gray-400 hover:text-white transition-colors"
+                className="flex gap-1 items-center text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
@@ -119,6 +98,6 @@ export default function ProjectItem({ project }: ProjectItemProps) {
           </div>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 }
